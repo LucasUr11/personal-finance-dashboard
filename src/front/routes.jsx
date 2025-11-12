@@ -8,6 +8,7 @@ import {
 import { Layout } from "./pages/Layout";
 import { Signup } from "./pages/Signup";
 import { Login } from "./pages/Login";
+import { Budget } from "./pages/Budget";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ export const router = createBrowserRouter(
 
       {/* Auth Routes */}
       <Route path="login" element={<Login />} />
+      <Route path="budget" element={<Budget />} />
 
     </Route>
   )

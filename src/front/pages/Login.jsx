@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
 
+    const navigate = useNavigate();
+
     return (
         <div className="container mt-5 d-flex flex-column">
             <div>
@@ -19,7 +21,9 @@ export const Login = () => {
                         <input type="password" className="form-control" placeholder="Contraseña" />
                     </div>
                     <div className="d-flex justify-content-center gap-2">
-                        <button type="submit" className="btn btn-registro w-100">Iniciar sesion</button>
+                        <Link to="/budget" type="submit" className="btn btn-iniciar_sesion w-100">
+                            Iniciar sesión
+                        </Link>
                         <Link to="/" className="btn btn-iniciar_sesion w-100">
                             Registrate
                         </Link>
