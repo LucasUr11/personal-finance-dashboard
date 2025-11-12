@@ -3,13 +3,8 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
 
 	return (
-<<<<<<< HEAD
 		<div className="w-100">
 			<nav className="navbar">
-=======
-		<div className="">
-			<nav className="navbar container-fluid">
->>>>>>> 83083ea415458f7399ba9fe69f8d424d973189cf
 				<div className="container d-flex justify-content-between">
 					<div className="">
 						<img

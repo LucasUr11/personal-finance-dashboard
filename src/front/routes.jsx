@@ -17,13 +17,8 @@ export const router = createBrowserRouter(
       <Route index element={<Signup />} />
 
       {/* Auth Routes */}
-      <Route path="signup" element={<Signup />} />
+      <Route path="login" element={<Login />} />
 
-
-
-      {/* Other Routes */}
-      <Route path="single/:theId" element={<Single />} />  {/* Dynamic route for single items */}
-      <Route path="demo" element={<Demo />} />
     </Route>
   )
 );

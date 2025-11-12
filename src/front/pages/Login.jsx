@@ -5,27 +5,24 @@ export const Login = () => {
 
     return (
         <div className="container mt-5 d-flex flex-column">
-            <div className="text-center">
-                <h1>Iniciar Sesion</h1>
-            </div>
             <div>
                 <form className="card p-3">
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" className="form-control" id="email" />
+                    <div className="text-center">
+                        <h1 className="text-white pb-3">Iniciar Sesion</h1>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Contraseña</label>
-                        <input type="password" className="form-control" id="password" />
+                        <input type="email" className="form-control" placeholder="Email" />
                     </div>
-                    <button type="submit" className="btn-registro btn btn-primary">Iniciar sesion</button>
+                    <div className="mb-3">
+                        <input type="password" className="form-control" placeholder="Contraseña" />
+                    </div>
+                    <div className="d-flex justify-content-center gap-2">
+                        <button type="submit" className="btn btn-registro w-100">Iniciar sesion</button>
+                        <Link to="/login" className="btn btn-iniciar_sesion w-100">
+                            Registrate
+                        </Link>
+                    </div>
                 </form>
-            </div>
-            <div>
-                ¿No estás registrado?{" "}
-                <Link to="/" className="link-text fw-semibold">
-                    Registrate
-                </Link>
             </div>
         </div>
     )

@@ -13,6 +13,10 @@ export const Signup = () => {
 	});
 
 	const navigate = useNavigate();
+	/*
+		Acá se declara la variable de entorno (Explicación en el README.es.md).-
+		const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001"; 
+	*/
 
 	// Actualiza el estado 
 	const handleChange = (e) => {
@@ -24,6 +28,11 @@ export const Signup = () => {
 		e.preventDefault();
 		try {
 			//Hacer el POST al backendzs
+			/*
+				Acá hay un error en donde tenemos que usar una variable de entorno.-
+				Ejemplo de como usarla:
+				const response = await fetch(`${API_URL}/api/singup`, ...)
+			*/
 			const response = await fetch("/api/signup", {
 				method: "POST",
 				headers: {

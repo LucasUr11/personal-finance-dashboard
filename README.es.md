@@ -19,11 +19,11 @@ Se recomienda instalar el backend primero, asegúrate de tener Python 3.10, Pipe
 2. Crea un archivo .env basado en el .env.example: `$ cp .env.example .env`
 3. Instala tu motor de base de datos y crea tu base de datos, dependiendo de tu base de datos, debes crear una variable DATABASE_URL con uno de los valores posibles, asegúrate de reemplazar los valores con la información de tu base de datos:
 
-| Motor     | DATABASE_URL                                        |
-| --------- | --------------------------------------------------- |
-| SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgres  | postgres://username:password@localhost:5432/example |
+| Motor    | DATABASE_URL                                        |
+| -------- | --------------------------------------------------- |
+| SQLite   | sqlite:////test.db                                  |
+| MySQL    | mysql://username:password@localhost:port/example    |
+| Postgres | postgres://username:password@localhost:5432/example |
 
 4. Migra las migraciones: `$ pipenv run migrate` (omite si no has hecho cambios en los modelos en `./src/api/models.py`)
 5. Ejecuta las migraciones: `$ pipenv run upgrade`
@@ -61,11 +61,11 @@ Y verás el siguiente mensaje:
 
 ### **Nota importante para la base de datos y los datos dentro de ella**
 
-Cada entorno de Github Codespace tendrá **su propia base de datos**, por lo que si estás trabajando con más personas, cada uno tendrá una base de datos diferente y diferentes registros dentro de ella. Estos datos **se perderán**, así que no pases demasiado tiempo creando registros manualmente para pruebas, en su lugar, puedes automatizar la adición de registros a tu base de datos editando el archivo ```commands.py``` dentro de la carpeta ```/src/api```. Edita la línea 32 de la función ```insert_test_data``` para insertar los datos según tu modelo (usa la función ```insert_test_users``` anterior como ejemplo). Luego, todo lo que necesitas hacer es ejecutar ```pipenv run insert-test-data```.
+Cada entorno de Github Codespace tendrá **su propia base de datos**, por lo que si estás trabajando con más personas, cada uno tendrá una base de datos diferente y diferentes registros dentro de ella. Estos datos **se perderán**, así que no pases demasiado tiempo creando registros manualmente para pruebas, en su lugar, puedes automatizar la adición de registros a tu base de datos editando el archivo `commands.py` dentro de la carpeta `/src/api`. Edita la línea 32 de la función `insert_test_data` para insertar los datos según tu modelo (usa la función `insert_test_users` anterior como ejemplo). Luego, todo lo que necesitas hacer es ejecutar `pipenv run insert-test-data`.
 
 ### Instalación manual del Front-End:
 
--   Asegúrate de estar usando la versión 20 de node y de que ya hayas instalado y ejecutado correctamente el backend.
+- Asegúrate de estar usando la versión 20 de node y de que ya hayas instalado y ejecutado correctamente el backend.
 
 1. Instala los paquetes: `$ npm install`
 2. ¡Empieza a codificar! inicia el servidor de desarrollo de webpack `$ npm run start`
@@ -79,3 +79,17 @@ Esta plantilla está 100% lista para desplegarse con Render.com y Heroku en cues
 Esta plantilla fue construida como parte del [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre nuestro [Curso de Desarrollador Full Stack](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer) y [Bootcamp de Ciencia de Datos](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
 
 Puedes encontrar otras plantillas y recursos como este en la [página de github de la escuela](https://github.com/4geeksacademy/).
+
+| ¿Qué es una Variable de entorno?
+
+| Una variable de entorno es el valor de una configuración que está fuera del código
+| (en nuestro caso, en el archivo '.env') la cual la app solo lee cuando el backend
+| está en tiempo de ejecución.
+
+| Su uso es muy útil porque evita romper el proyecto cuando la URL del backend cambie.
+| Además de que evita hardcodear datos que van cambiando entre entornos (distintos
+| codespace) o que son sensibles, como lo son las claves, URLs, etc.
+
+| >>>>>>>>> Dato a tener en cuenta <<<<<<<<<
+| Una vez agregada la variable en el archivo '.env', es OBLIGATORIO reiniciar el
+| servidor (se cancela la ejecución y la volves a activar con 'pipenv run start').
