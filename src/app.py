@@ -10,7 +10,7 @@ from Backend.models import db, User
 from Backend.routes import api
 from Backend.admin import setup_admin
 from Backend.commands import setup_commands
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, JWTManager
 
 # from models import Person
 
@@ -19,6 +19,10 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../dist/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+# Creación del token mediante la clave guardada en la variable FLASK_APP_KEY (.env)
+app.config["JWT_SECRET_KEY"] = os.getenv("FLASK_APP_KEY")
+jwt = JWTManager(app)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

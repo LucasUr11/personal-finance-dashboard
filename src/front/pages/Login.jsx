@@ -47,9 +47,11 @@ export const Login = () => {
         <div className="container mt-5 d-flex flex-column">
             <div>
                 <form className="card p-3" onSubmit={handleSubmit}>
+
                     <div className="text-center">
                         <h1 className="text-white pb-3">Iniciar Sesion</h1>
                     </div>
+
                     {/* Ingresar Email*/}
                     <div className="input-container mb-3">
                         <i className="fa-solid fa-envelope"></i>
@@ -63,6 +65,7 @@ export const Login = () => {
                             required
                         />
                     </div>
+
                     {/* Ingresar password*/}
                     <div className="input-container mb-3">
                         <i className="fa-solid fa-lock"></i>
