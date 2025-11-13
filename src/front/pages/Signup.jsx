@@ -13,10 +13,6 @@ export const Signup = () => {
 	});
 
 	const navigate = useNavigate();
-	/*
-		Acá se declara la variable de entorno (Explicación en el README.es.md).-
-		const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001"; 
-	*/
 
 	const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
