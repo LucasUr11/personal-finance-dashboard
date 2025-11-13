@@ -18,6 +18,8 @@ export const Signup = () => {
 		const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001"; 
 	*/
 
+	const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
+
 	// Actualiza el estado 
 	const handleChange = (e) => {
 		setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -28,12 +30,8 @@ export const Signup = () => {
 		e.preventDefault();
 		try {
 			//Hacer el POST al backendzs
-			/*
-				Acá hay un error en donde tenemos que usar una variable de entorno.-
-				Ejemplo de como usarla:
-				const response = await fetch(`${API_URL}/api/singup`, ...)
-			*/
-			const response = await fetch("/api/signup", {
+
+			const response = await fetch(`${API_URL}/api/signup`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -61,32 +59,35 @@ export const Signup = () => {
 						<h1 className="text-white pb-3">Registrate</h1>
 					</div>
 					<div className="input-container mb-3">
-						<i class="fa-solid fa-user"></i>
+						<i className="fa-solid fa-user"></i>
 						<input
 							type="text"
 							className="form-control"
 							placeholder="Nombre"
 							aria-describedby="name"
+							id="name"
 							value={formData.name}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="input-container mb-3">
-						<i class="fa-solid fa-envelope"></i>
+						<i className="fa-solid fa-envelope"></i>
 						<input
 							type="email"
 							className="form-control"
 							placeholder="Email"
+							id="email"
 							value={formData.email}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="input-container mb-3">
-						<i class="fa-solid fa-lock"></i>
+						<i className="fa-solid fa-lock"></i>
 						<input
 							type="password"
 							className="form-control"
 							placeholder="Contraseña"
+							id="password"
 							value={formData.password}
 							onChange={handleChange}
 						/>

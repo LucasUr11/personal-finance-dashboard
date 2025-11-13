@@ -26,7 +26,7 @@ class User (db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(20), nullable=True)
     email: Mapped[str] = mapped_column(String(50), unique=True, nullable=True)
-    password: Mapped[str] = mapped_column(String(20), nullable=True)
+    password: Mapped[str] = mapped_column(String(200), nullable=True)
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
