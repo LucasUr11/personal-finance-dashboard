@@ -33,24 +33,14 @@
   color: #fff;
 }
 
-.btn-registro {
+.btn-registro,
+.btn-iniciar_sesion {
   background-color: #0e6b64;
   border: 1px solid #0e6b64;
   color: #fff;
 }
 
-.btn-registro:hover {
-  background-color: #00a884;
-  border: 1px solid #00a884;
-  color: #fff;
-}
-
-.btn-iniciar_sesion {
-  border: 1px solid #0e6b64;
-  color: #0e6b64;
-  background-color: #fff;
-}
-
+.btn-registro:hover,
 .btn-iniciar_sesion:hover {
   background-color: #00a884;
   border: 1px solid #00a884;
