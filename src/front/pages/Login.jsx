@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { Card, Button, Form } from 'react-bootstrap';
 
 
 // Almacenamos los datos ingresados 
@@ -53,7 +54,7 @@ export const Login = () => {
     return (
         <div className="container mt-5 d-flex flex-column">
             <div>
-                <form className="card p-3" onSubmit={handleSubmit}>
+                <Form className="card p-3" style={{ backgroundColor: "#2c2f36" }} onSubmit={handleSubmit}>
 
                     <div className="text-center">
                         <h1 className="text-white pb-3">Iniciar Sesion</h1>
@@ -88,10 +89,10 @@ export const Login = () => {
                     </div>
 
                     {/* Botón */}
-                    <button type="submit" className="btn btn-iniciar_sesion w-100">
+                    <Button type="submit" className="btn w-100" style={{ backgroundColor: "#0e6b64", border: "1px solid #0e6b64" }}>
                         Iniciar sesión
-                    </button>
-                </form>
+                    </Button>
+                </Form>
             </div>
         </div>
     )

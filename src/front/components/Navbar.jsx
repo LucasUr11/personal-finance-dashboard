@@ -37,8 +37,8 @@ export const Navbar = () => {
 				{/* Si el token NO existe, muestra el login y el signup */}
 				{!token && (
 					<>
-						<Link className="btn nav-btns">Iniciar sesión</Link>
-						<Link className="btn nav-btns">Registrate</Link>
+						<Link to={"/login"} className="btn nav-btns">Iniciar sesión</Link>
+						<Link to={"/signup"} className="btn nav-btns">Registrate</Link>
 					</>
 				)}
 

@@ -8,9 +8,11 @@ export const Budget = () => {
     const [showIngreso, setShowIngreso] = useState(false);
     const [showGasto, setShowGasto] = useState(false);
     const navigate = useNavigate();
+
     const handleSave = (data) => {
         console.log("Datos guardados:", data);
     };
+
     {/* Valida el token*/ }
     useEffect(() => {
         const check = async () => {
@@ -23,7 +25,7 @@ export const Budget = () => {
         };
 
         check();
-    }, []);
+    }, []); // Se ejecuta una sola vez, al iniciar la applicación.-
 
     {/* Jala el usuario y datos*/ }
     const user = JSON.parse(localStorage.getItem("user"));
