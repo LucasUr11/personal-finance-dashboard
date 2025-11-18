@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -11,6 +10,8 @@ export const Signup = () => {
 		password: ""
 	});
 
+	const [message, setMessage] = useState("");
+	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
 	const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
@@ -37,15 +38,18 @@ export const Signup = () => {
 			//Pasamos la respuesta a .json
 			const data = await response.json();
 			if (response.ok) {
-				alert(data.Mensaje);
-				navigate("/login");
+				setMessage("Usuario creado correctamente.")
+				setTimeout(() => {
+					navigate("/login");
+				}, 1000);
 
 			} else {
-				alert(data.Mensaje);
+				const error = await response.json();
+				throw new Error(error.message && "Error al registrar el usuario.")
 			}
-			// Podemos usar el 'useError' para mostrar errores en pantalla.-
+
 		} catch (error) {
-			alert("Error de conexión con el servidor");
+			setError(error.message)
 		}
 	}
 	return (
@@ -89,6 +93,10 @@ export const Signup = () => {
 							onChange={handleChange}
 						/>
 					</div>
+
+					{message && <div className="alert alert-success">{message}</div>}
+					{error && <div className="alert alert-danger">{error}</div>}
+
 					<div className="d-flex justify-content-center gap-2">
 						<button type="submit" className="btn btn-registro w-100">Registrarse</button>
 					</div>

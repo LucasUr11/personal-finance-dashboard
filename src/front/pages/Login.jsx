@@ -10,6 +10,8 @@ export const Login = () => {
         password: ""
     });
 
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     // Variable de entorno.-
@@ -23,6 +25,7 @@ export const Login = () => {
     // Envia el formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await fetch(`${API_URL}/api/login`, {
@@ -37,17 +40,19 @@ export const Login = () => {
 
             // Almacenamos el token
             if (response.ok) {
-                alert(data.Mensaje);
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user))
                 setTimeout(() => {
                     navigate("/budget");
                 }, 1000);
             } else {
-                alert(data.Mensaje);
+                const error = await response.json();
+                throw new Error(error.message && "Error al iniciar sesión.")
             }
         } catch (error) {
-            alert("Error de conexión con el servidor");
+            setError(error.message);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -88,9 +93,15 @@ export const Login = () => {
                         />
                     </div>
 
+                    {error && <div className="alert alert-danger">{error}</div>}
+
                     {/* Botón */}
-                    <Button type="submit" className="btn w-100" style={{ backgroundColor: "#0e6b64", border: "1px solid #0e6b64" }}>
-                        Iniciar sesión
+                    <Button
+                        type="submit"
+                        className="btn w-100 btn-iniciar_sesion"
+                        disabled={loading}
+                    >
+                        {loading ? "Cargando..." : "Iniciar Sesión"}
                     </Button>
                 </Form>
             </div>
