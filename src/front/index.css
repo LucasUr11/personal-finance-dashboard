@@ -6,6 +6,7 @@
 /* Estilos para el Navbar */
 .navbar {
   background-color: #0e6b64;
+  width: 100%;
 }
 
 .btn-navbar {
@@ -144,12 +145,45 @@
 
 .info-gestor {
   display: flex;
+}
+
+.info-gestor_container {
+  max-width: 900px;
+}
+
+.info-gestor_container__img {
+  display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  align-content: space-between;
+}
+
+.info-gestor_img {
+  margin-top: 40%;
+  width: 500px;
+  height: 300px;
+}
+
+.info-gestor_img-2 {
+  margin-top: 80%;
+  width: 500px;
+  height: 500px;
+}
+
+.info-gestor_titulo {
+  text-align: justify;
+  border: 1px solid red;
 }
 
 .info-gestor_titulo h1 {
   text-align: center;
+  margin: 15px 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.info-gestor_titulo,
+.info-gestor_presupuesto,
+.info-gestor_consejos p {
+  font-family: "Inter", sans-serif;
 }
 
 .info-gestor_btn {
