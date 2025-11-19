@@ -47,6 +47,7 @@ export const Login = () => {
                 }, 1000);
             } else {
                 const error = await response.json();
+                localStorage.removeItem("jwt");
                 throw new Error(error.message && "Error al iniciar sesión.")
             }
         } catch (error) {

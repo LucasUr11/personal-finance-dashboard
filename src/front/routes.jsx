@@ -14,6 +14,7 @@ import { CreateBudget } from "./pages/CreateBudget";
 import { AgregarGasto } from "./components/AgregarGasto";
 import { AgregarIngreso } from "./components/AgregarIngreso";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { InfoGestor } from "./pages/InfoGestor";
 
 
 export const router = createBrowserRouter(
@@ -31,6 +32,7 @@ export const router = createBrowserRouter(
       <Route path="CreateBudget" element={<CreateBudget />} />
       <Route path="AgregarGasto" element={<AgregarGasto />} />
       <Route path="AgregarIngreso" element={<AgregarIngreso />} />
+      <Route path="InfoGestor" element={<InfoGestor />} />
 
 
     </Route>
