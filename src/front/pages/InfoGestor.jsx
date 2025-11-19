@@ -38,10 +38,10 @@ export const InfoGestor = () => {
                             Un presupuesto mensual no se trata solo de sumas y restas. Para que realmente funcione, debe estar alineado con las necesidades del hogar, ser flexible y mantenerse actualizado.
                         </p>
                     </div>
-                    <div>
+                    <div className="info-gestor_consejos__ul">
                         <ul>
                             <li>
-                                <h3>Establece objetivos financieros claros</h3>
+                                <h3>- Establece objetivos financieros claros</h3>
                                 <p>
                                     Antes de empezar, es importante saber qué se quiere lograr. El presupuesto puede ayudarte a pagar deudas, aumentar tu ahorro o simplemente organizar mejor tus costos.
                                 </p>
@@ -51,7 +51,7 @@ export const InfoGestor = () => {
                             </li>
 
                             <li>
-                                <h3>Sé realista con los montos y categorías</h3>
+                                <h3>- Sé realista con los montos y categorías</h3>
                                 <p>
                                     Anota cada ingreso que recibas: sueldos, trabajos independientes, pensiones o ingresos variables. No dejes nada fuera, aunque parezca poco relevante.
                                 </p>
@@ -61,7 +61,7 @@ export const InfoGestor = () => {
                             </li>
 
                             <li>
-                                <h3>Usa herramientas que te faciliten el seguimiento</h3>
+                                <h3>- Usa herramientas que te faciliten el seguimiento</h3>
                                 <p>
                                     Si la herramienta es compleja o poco práctica, será difícil mantener la constancia. Un sistema simple favorece la disciplina.
                                 </p>
@@ -71,7 +71,7 @@ export const InfoGestor = () => {
                             </li>
 
                             <li>
-                                <h3>Revisa y ajusta el presupuesto cada mes</h3>
+                                <h3>- Revisa y ajusta el presupuesto cada mes</h3>
                                 <p>
                                     Revisar tu presupuesto una vez al mes permite detectar errores, ajustar montos y hacer mejoras. También ayuda a comparar entre meses y ver si estás avanzando hacia tu objetivo.
                                 </p>
@@ -81,7 +81,7 @@ export const InfoGestor = () => {
                             </li>
 
                             <li>
-                                <h3>Involucra a toda la familia</h3>
+                                <h3>- Involucra a toda la familia</h3>
                                 <p>
                                     Si el presupuesto afecta a varias personas del hogar, lo ideal es que todos lo conozcan. Esto genera compromiso y evita confusiones en el manejo del dinero.
                                 </p>
@@ -92,12 +92,14 @@ export const InfoGestor = () => {
                         </ul>
                     </div>
                 </div>
-                <button
-                    onClick={() => navigate("/home")}
-                    className="btn info-gestor_btn"
-                >
-                    Home
-                </button>
+                <div className="info-gestor_btn">
+                    <button
+                        onClick={() => navigate("/home")}
+                        className="btn info-gestor_btn__home"
+                    >
+                        Home
+                    </button>
+                </div>
             </div>
             <div className="info-gestor_container__img">
                 <img
