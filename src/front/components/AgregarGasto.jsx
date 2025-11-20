@@ -3,29 +3,36 @@ import { Modal, Button, Form } from "react-bootstrap";
 
 export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded }) => {
 
-    const [form, setForm] = useState({
-        monto: "",
-        descripcion: "",
-        categoria: "",
-    });
+    const [monto, setMonto] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [error, setError] = useState("");
+    const categoriasGastos = [
+        "Servicios",
+        "Salud",
+        "Deuda",
+        "Entretenimiento",
+        "Alimentación",
+        "Transporte",
+        "Impuestos/tasas",
+        "Vacaciones",
+        "Otros",
+    ];
 
     // Variable de entorno
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
     const handleSubmit = async () => {
-        const amountNumber = Number(form.monto);
+        if (!monto.trim()) return alert("El monto es obligatorio");
 
-        // Validaciones
-        if (!form.monto.trim() || isNaN(amountNumber) || amountNumber < 0) {
-            return alert("Monto inválido o negativo");
-        }
-        if (!form.descripcion.trim()) return alert("La descripción es obligatoria");
-        if (!form.categoria.trim()) return alert("La categoría es obligatoria");
+        const amountNumber = Number(monto);
 
+        if (isNaN(amountNumber)) return alert("Monto inválido");
+        if (amountNumber < 0) return alert("Monto inválido");
+        if (!descripcion.trim()) return alert("La descripción es obligatoria");
+        if (!categoria.trim()) return alert("La categoría es obligatoria");
+
+        setError("");
         try {
             const res = await fetch(
                 `${API_URL}/api/budgets/${budgetId}/gasto`,
@@ -36,8 +43,8 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded }) =>
                         Authorization: `Bearer ${token}`,
                     },
                     body: JSON.stringify({
-                        description: form.descripcion,
-                        category: form.categoria,
+                        description: descripcion,
+                        category: categoria,
                         amount: amountNumber
                     })
                 }
@@ -50,8 +57,10 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded }) =>
             }
 
             onAdded();
+            setMonto("");
+            setDescripcion("");
+            setCategoria("");
             handleClose();
-            setForm({ monto: "", descripcion: "", categoria: "" });
         } catch (error) {
             alert("Error al conectar con el servidor");
         }
@@ -70,8 +79,8 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded }) =>
                         <Form.Control
                             type="number"
                             name="monto"
-                            value={form.monto}
-                            onChange={handleChange}
+                            value={monto}
+                            onChange={e => setMonto(e.target.value)}
                         />
                     </Form.Group>
 
@@ -80,26 +89,31 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded }) =>
                         <Form.Control
                             type="text"
                             name="descripcion"
-                            value={form.descripcion}
-                            onChange={handleChange}
+                            value={descripcion}
+                            onChange={e => setDescripcion(e.target.value)}
                         />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Categoría</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="categoria"
-                            value={form.categoria}
-                            onChange={handleChange}
-                        />
+                        <Form.Select
+                            value={categoria}
+                            onChange={(e) => setCategoria(e.target.value)}
+                        >
+                            <option value="">Seleccione... </option>
+                            <option value="servicios">Servicios</option>
+                            <option value="salud">Salud</option>
+                            <option value="deuda">Deuda</option>
+                            <option value="alimentacion">Alimentación</option>
+                            <option value="otros">Otros</option>
+                        </Form.Select>
                     </Form.Group>
                 </Form>
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                <Button variant="success" onClick={handleSubmit}>Guardar</Button>
+                <Button variant="secondary" onClick={handleClose}>Cancelar</Button>
+                <Button variant="success" onClick={handleSubmit}>Guardar Gasto</Button>
             </Modal.Footer>
         </Modal>
     );
