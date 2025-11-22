@@ -6,7 +6,7 @@ export const InfoGestor = () => {
 
     const navigate = useNavigate();
     return (
-        <div className="container info-gestor">
+        <div className="container-fluid info-gestor">
             <div className="info-gestor_container">
 
                 <div className="info-gestor_titulo">
