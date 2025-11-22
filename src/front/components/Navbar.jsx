@@ -56,7 +56,10 @@ export const Navbar = () => {
 
 				{/* Si el token SI existe, mostrar Cerrar sesion */}
 				{token && (
-					<button className="btn nav-btn_cerrar_sesion" onClick={handleLogout}>Cerrar sesión</button>
+					<div className="d-flex align-items-center gap-2">
+						<button className="btn nav-btn_cerrar_sesion" onClick={handleLogout}>Cerrar sesión</button>
+						<Link to={"/budget"} className="nav-btn_budget btn"><i className="fa-solid fa-arrow-right-to-bracket"></i></Link>
+					</div>
 				)}
 
 			</div>

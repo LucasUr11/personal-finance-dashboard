@@ -13,14 +13,14 @@
 
 #root {
   background-color: #ececec;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-/* Estilos para el Navbar */
+/*######################### Estilos para el Navbar #########################*/
 .navbar {
   background-color: rgb(14, 107, 100);
   width: 100%;
@@ -83,7 +83,8 @@
   transform: translateY(-3px);
 }
 
-.nav-btn_cerrar_sesion {
+.nav-btn_cerrar_sesion,
+.nav-btn_budget {
   font-size: 18px;
   color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -96,7 +97,14 @@
   transform: translateY(-3px);
 }
 
-/* Estilos para los formularios <Login> y <Signup> */
+.nav-btn_budget:hover {
+  color: #fff;
+  background: #ec9a06;
+  box-shadow: 0 4px 20px #ec9a0680;
+  transform: translateX(3px);
+}
+
+/*######################### Estilos para los formularios <Login> y <Signup> #########################*/
 
 .container_formulario {
   min-width: 500px;
@@ -105,6 +113,7 @@
   font-style: normal;
   margin: auto;
   margin-top: 110px;
+  min-height: 63vh;
 }
 
 .card {
@@ -145,7 +154,7 @@
   color: #fff;
 }
 
-/* Estilos para los input */
+/*######################### Estilos para los input #########################*/
 .input-container {
   position: relative;
   margin-bottom: 15px;
@@ -169,7 +178,7 @@
   font-size: 20px;
 }
 
-/* Estilos para el Home */
+/*######################### Estilos para el Home #########################*/
 .home_img {
   width: 580px;
   height: auto;
@@ -198,22 +207,26 @@
   border: 1px solid #0e6b64;
   width: 25%;
   color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .home_button:hover {
-  border: 1px solid #00a884;
-  background-color: #00a884;
   color: #fff;
+  background: #00a884;
+  box-shadow: 0 4px 20px #00a88480;
+  transform: translateY(-3px);
 }
 
-/* Estilos para InfoGestor */
+/*######################### Estilos para InfoGestor #########################*/
 
 .info-gestor {
   display: flex;
+  background-color: #fff;
 }
 
 .info-gestor_container {
-  max-width: 900px;
+  width: 90%;
+  padding: 0 90px;
 }
 
 .info-gestor_container__img {
@@ -229,7 +242,7 @@
 }
 
 .info-gestor_img-2 {
-  margin-top: 80%;
+  margin-top: 100%;
   width: 500px;
   height: 500px;
 }
@@ -274,15 +287,43 @@
 
 .info-gestor_btn__home {
   background-color: #0e6b64;
-  border: 1px solid #0e6b64;
   color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 15%;
+  margin: 25px 0;
 }
 
 .info-gestor_btn__home:hover {
-  border: 1px solid #00a884;
-  background-color: #00a884;
   color: #fff;
+  background: #00a884;
+  box-shadow: 0 4px 20px #00a88480;
+  transform: translateY(-3px);
+}
+/* ######################### Estilos para el Footer ######################### */
+
+.footer {
+  height: 100%;
+  width: 100%;
+  background-color: #00a884;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_button button {
+  background-color: #ec9a06;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer_button button:hover {
+  background-color: #ec9a06;
+  color: #fff;
+  box-shadow: 0 4px 20px #ec9a0680;
+  transform: translateY(-3px);
+}
+
+.footer_button button:focus {
+  background-color: #ec9a06;
 }
 
 /* Skeleton */
