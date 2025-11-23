@@ -175,7 +175,7 @@ export const DetallePresupuesto = () => {
                 <div className="col-md-6">
                     <div className="card h-100" style={{ backgroundColor: "#f2f2f2" }}>
                         <div className="card-body">
-                            {/*<GraficoDeResumen gastos={gastos} ingresos={ingresos} />*/}
+                            <Graficos gastos={gastos} ingresos={ingresos} />
                         </div>
                     </div>
                 </div>
