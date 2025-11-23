@@ -194,7 +194,7 @@ export const DetallePresupuesto = () => {
             <AgregarIngreso
                 show={showIngreso}
                 handleClose={() => setShowIngreso(false)}
-                id={id}
+                budgetId={id}
                 token={token}
                 onAdded={refreshData}
             />
@@ -202,7 +202,7 @@ export const DetallePresupuesto = () => {
             <AgregarGasto
                 show={showGasto}
                 handleClose={() => setShowGasto(false)}
-                id={id}
+                budgetId={id}
                 token={token}
                 onAdded={refreshData}
             />
