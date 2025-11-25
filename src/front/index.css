@@ -22,7 +22,7 @@
 
 /*######################### Estilos para el Navbar #########################*/
 .navbar {
-  background-color: rgb(14, 107, 100);
+  background-color: #0e6b64;
   width: 100%;
   gap: 70px;
   box-shadow: 0px 4px 26px 1px rgba(14, 107, 100, 0.82);
@@ -136,7 +136,7 @@
 .btn-registro,
 .btn-iniciar_sesion {
   background-color: #0e6b64;
-  border: 1px solid #0e6b64;
+  border: none;
   color: #fff;
   font-size: 20px;
 }
@@ -144,16 +144,22 @@
 .btn-registro:hover,
 .btn-iniciar_sesion:hover {
   background-color: #00a884;
-  border: 1px solid #00a884;
   color: #fff;
-}
-.btn-registro:focus,
-.btn-iniciar_sesion:focus {
-  background-color: #00a884d2;
-  border: 1px solid #00a884d2;
-  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.btn-iniciar_sesion:focus,
+.btn-registro:focus {
+  background: #00a884;
+  color: #fff;
+  box-shadow: 0 4px 20px #00a88480;
+  transform: translateY(-3px);
+}
+
+.btn-iniciar_sesion:disabled,
+.btn-registro:disabled {
+  background-color: #0b5a54;
+}
 /*######################### Estilos para los input #########################*/
 .input-container {
   position: relative;
@@ -304,14 +310,35 @@
 .footer {
   height: 100%;
   width: 100%;
-  background-color: #00a884;
+  background-color: #0e6b64;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer_title {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  display: flex;
+  color: #fff;
+}
+
+.footer_title h4 {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.footer_button {
+  width: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 .footer_button button {
   background-color: #ec9a06;
-  border: none;
+  color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -323,7 +350,27 @@
 }
 
 .footer_button button:focus {
+  background-color: #ec9a0680;
+}
+
+.footer_button ul {
   background-color: #ec9a06;
+}
+
+.footer_button ul li a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.footer_copyright {
+  color: #a7a7a7;
+  display: flex;
+}
+
+.footer_copyright p {
+  margin: 0;
+  padding: 10px 0;
 }
 
 /* Skeleton */
