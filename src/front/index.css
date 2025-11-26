@@ -159,8 +159,10 @@
 .btn-iniciar_sesion:disabled,
 .btn-registro:disabled {
   background-color: #0b5a54;
+  color: #fff;
 }
 /*######################### Estilos para los input #########################*/
+
 .input-container {
   position: relative;
   margin-bottom: 15px;
@@ -305,6 +307,30 @@
   box-shadow: 0 4px 20px #00a88480;
   transform: translateY(-3px);
 }
+
+/* ######################### Estilos para el Budget ######################### */
+
+.budget {
+  height: 100vh;
+}
+
+.budget_button {
+  background-color: #0e6b64;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budget_button:hover {
+  color: #fff;
+  background: #00a884;
+  box-shadow: 0 4px 20px #00a88480;
+  transform: translateY(-3px);
+}
+
+.budget_paragraph {
+  font-size: 18px;
+}
+
 /* ######################### Estilos para el Footer ######################### */
 
 .footer {
@@ -413,19 +439,4 @@
   100% {
     background-color: #e3e3e3;
   }
-}
-
-/* Estilos varios */
-.color-custom {
-  color: #00a884;
-}
-
-.btn-custom {
-  background-color: #0e6b64 !important;
-  border-color: #0e6b64 !important;
-  color: white !important;
-}
-.btn-custom:hover {
-  background-color: #0b5a54 !important;
-  border-color: #0b5a54 !important;
 }

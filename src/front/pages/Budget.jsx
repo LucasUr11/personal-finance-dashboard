@@ -84,13 +84,14 @@ export const Budget = () => {
         );
     };
     return (
-        <div className="container text-center  mt-5">
-            <h1>Estamos felices de verte, {user.name}.</h1>
-            <p>Gestiona tus presupuestos aquí.</p>
+        <div className="container text-center budget mt-5">
+            <h3>Estamos felices de verte,</h3>
+            <h1>{user.name}.</h1>
+            <p className="budget_paragraph">↓ Gestiona tus presupuestos aquí. ↓</p>
 
             {/* Crear Presupuesto */}
             <button
-                className="btn btn-custom m-2"
+                className="btn budget_button m-2"
                 onClick={() => navigate("/CreateBudget")}
             >
                 Crear Nuevo Presupuesto
