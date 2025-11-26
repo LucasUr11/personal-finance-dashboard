@@ -329,6 +329,21 @@
 
 .budget_paragraph {
   font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10px 0;
+  gap: 3px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.budget_paragraph:hover {
+  transform: translateY(3px);
+}
+
+.budget_paragraph i {
+  font-size: 15px;
 }
 
 /* ######################### Estilos para el Footer ######################### */

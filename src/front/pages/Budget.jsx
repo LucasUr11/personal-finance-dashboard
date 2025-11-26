@@ -87,7 +87,11 @@ export const Budget = () => {
         <div className="container text-center budget mt-5">
             <h3>Estamos felices de verte,</h3>
             <h1>{user.name}.</h1>
-            <p className="budget_paragraph">↓ Gestiona tus presupuestos aquí. ↓</p>
+            <p className="budget_paragraph">
+                <i className="fa-solid fa-angle-down"></i>
+                Gestiona tus presupuestos aquí
+                <i className="fa-solid fa-angle-down"></i>
+            </p>
 
             {/* Crear Presupuesto */}
             <button
