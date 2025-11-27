@@ -41,6 +41,9 @@ export const Navbar = () => {
 				{/* Si el token NO existe, muestra el login y el signup */}
 				{!token && (
 					<>
+						<Link to="/SobreNosotros" className="navbar-link-descripcion btn">
+							Sobre Nosotros
+						</Link>
 						<Link to={"/signup"} className="btn navbar-buttons signup">Registrate</Link>
 						<Link to={"/login"} className="btn navbar-buttons login">Iniciar sesión</Link>
 					</>
@@ -49,6 +52,9 @@ export const Navbar = () => {
 				{/* Si el token SI existe, mostrar Cerrar sesion */}
 				{token && (
 					<div className="d-flex align-items-center gap-2">
+						<Link to="/SobreNosotros" className="navbar-link-descripcion btn">
+							Sobre Nosotros
+						</Link>
 						<button className="btn navbar-button_cerrar-sesion" onClick={handleLogout}>Cerrar sesión</button>
 						<Link to={"/budget"} className="navbar-button_budget btn"><i className="fa-solid fa-arrow-right-to-bracket"></i></Link>
 					</div>

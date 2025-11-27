@@ -75,6 +75,24 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.navbar-link {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-link-descripcion {
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-link-descripcion:hover {
+  background-color: #ec9a06;
+  color: #fff;
+  box-shadow: 0 4px 20px #ec9a0680;
+  transform: translateY(-3px);
+}
+
 .navbar-buttons:hover {
   color: #fff;
   border: 1px solid #0e6b64;
@@ -84,7 +102,8 @@
 }
 
 .navbar-button_cerrar-sesion,
-.navbar-button_budget {
+.navbar-button_budget,
+.navbar-link-descripcion {
   font-size: 18px;
   color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -567,25 +586,6 @@
 .footer-title h4 {
   margin: 0;
   padding: 10px 0;
-}
-
-.footer-link {
-  width: 25%;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-link-descripcion {
-  background-color: #ec9a06;
-  color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.footer-link-descripcion:hover {
-  background-color: #ec9a06;
-  color: #fff;
-  box-shadow: 0 4px 20px #ec9a0680;
-  transform: translateY(-3px);
 }
 
 .footer-copyright {
