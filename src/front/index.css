@@ -541,20 +541,22 @@
   transform: translateY(-3px);
 }
 
-.detalle_presupuesto_volver {
+.detalle_presupuesto_text {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 20px;
 }
 
-.detalle_presupuesto_volver button {
+.detalle_presupuesto_button {
   background-color: #ec9a06;
   border-color: #ec9a06;
   color: #fff;
+  position: absolute;
+  font-size: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.detalle_presupuesto_volver button:hover {
+.detalle_presupuesto_button:hover {
   background-color: #ec9a06;
   border-color: #ec9a06;
   color: #fff;
