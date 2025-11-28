@@ -36,12 +36,18 @@ export const EditarGasto = ({ show, handleClose, gasto, token, onUpdated }) => {
             category: form.categoria,
         };
 
+        const tokenFinal = token || localStorage.getItem('token');
+
+        if (!tokenFinal) {
+            return alert("No estás autorizado. Por favor inicia sesión nuevamente.");
+        }
+
         try {
             const res = await fetch(`${API_URL}/api/gastos/${gasto.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${tokenFinal}`,
                 },
                 body: JSON.stringify(body),
             });
@@ -49,12 +55,17 @@ export const EditarGasto = ({ show, handleClose, gasto, token, onUpdated }) => {
             const data = await res.json();
 
             if (!res.ok) {
+                if (res.status === 401) {
+                    alert("Tu sesión ha expirado.");
+                    window.location.href = '/login';
+                }
                 return alert(data.msg || "Error al actualizar el gasto.");
             }
 
             onUpdated();
             handleClose();
         } catch (error) {
+            console.error(error);
             alert("Error al conectar con el servidor.");
         }
     };
@@ -103,7 +114,7 @@ export const EditarGasto = ({ show, handleClose, gasto, token, onUpdated }) => {
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                <Button variant="primary" onClick={handleSubmit}>Guardar Cambios</Button>
+                <Button className="btn-custom" onClick={handleSubmit}>Guardar Cambios</Button>
             </Modal.Footer>
         </Modal>
     );

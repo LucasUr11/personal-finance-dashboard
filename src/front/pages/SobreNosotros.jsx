@@ -1,5 +1,6 @@
 import JavierImg from "../assets/img/javier.jpg";
 import LucasImg from "../assets/img/lucas.jpeg";
+import ElizabethImg from "../assets/img/elizabeth.jpeg";
 
 
 export const SobreNosotros = () => {
@@ -24,12 +25,15 @@ export const SobreNosotros = () => {
 
                     <div className="col-md-4">
                         <div className="card perfil-card">
-                            <img src="https://placehold.co/400" className="card-img-top" alt="Elizabeth" />
+                            <img src={ElizabethImg} className="perfil-foto" alt="Elizabeth" />
                             <div className="card-body">
                                 <h5 className="card-title">Elizabeth Duarte</h5>
                                 <div className="card-text descripcion-hover">
                                     <p>País: Costa Rica</p>
-                                    <p></p>
+                                    <p>
+                                        Este curso fue un viaje intenso, retador y profundamente transformador. Llegué con inseguridades, dudas y muchas ganas de aprender, y me voy con herramientas, claridad y una enorme confianza en lo que puedo construir.
+                                        Este proceso me hizo crecer no solo como desarrolladora, sino como persona. Hoy me siento lista para seguir aprendiendo, crear proyectos más grandes y abrirme camino en este mundo que una vez me pareció imposible.
+                                    </p>
                                     <div className="icon-container">
                                         <a
                                             href="https://www.linkedin.com/in/elizabeth-duarte/"

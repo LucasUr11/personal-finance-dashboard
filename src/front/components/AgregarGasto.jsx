@@ -105,7 +105,6 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
 
                     <Form.Group>
                         <Form.Label>Categoría</Form.Label>
-                        <Form.Label>Categoría</Form.Label>
                         <Form.Select
                             value={categoria}
                             onChange={(e) => setCategoria(e.target.value)}

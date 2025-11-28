@@ -231,14 +231,14 @@ def add_ingreso(budget_id):
 @api.route("/ingresos/<int:ingreso_id>", methods=["PUT"])
 @jwt_required()
 def update_ingreso(ingreso_id):
-    user_id = get_jwt_identity()
+    current_user_id = get_jwt_identity()
 
     ingreso = Ingreso.query.get(ingreso_id)
     if not ingreso:
         return jsonify({"msg": "Ingreso no encontrado"}), 404
 
     budget = Budget.query.get(ingreso.budget_id)
-    if budget.user_id != user_id:
+    if int(budget.user_id) != int(current_user_id):
         return jsonify({"msg": "No autorizado"}), 403
 
     data = request.get_json() or {}
@@ -272,7 +272,7 @@ def delete_ingreso(ingreso_id):
         return jsonify({"msg": "Ingreso no encontrado"}), 404
 
     budget = Budget.query.get(ingreso.budget_id)
-    if budget.user_id != int (user_id):
+    if budget.user_id != int(user_id):
         return jsonify({"msg": "No autorizado"}), 403
 
     db.session.delete(ingreso)
@@ -326,14 +326,14 @@ def add_gasto(budget_id):
 @api.route("/gastos/<int:gasto_id>", methods=["PUT"])
 @jwt_required()
 def update_gasto(gasto_id):
-    user_id = get_jwt_identity()
+    current_user_id = get_jwt_identity()
 
     gasto = Gasto.query.get(gasto_id)
     if not gasto:
         return jsonify({"msg": "Gasto no encontrado"}), 404
 
     budget = Budget.query.get(gasto.budget_id)
-    if budget.user_id != user_id:
+    if int(budget.user_id) != int(current_user_id):
         return jsonify({"msg": "No autorizado"}), 403
 
     data = request.get_json() or {}

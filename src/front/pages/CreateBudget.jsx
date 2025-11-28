@@ -5,6 +5,8 @@ import { AgregarIngreso } from "../components/AgregarIngreso";
 import { AgregarGasto } from "../components/AgregarGasto";
 import { ListaIngresos } from "../components/ListaIngresos";
 import { ListaGastos } from "../components/ListaGastos";
+import { EditarGasto } from '../components/EditarGasto';
+import { EditarIngreso } from '../components/EditarIngreso';
 import { Balance } from "../components/Balance";
 import { currencies } from "../js/utils"
 export const CreateBudget = () => {
@@ -17,6 +19,10 @@ export const CreateBudget = () => {
     const [monedaSeleccionada, setMonedaSeleccionada] = useState(currencies[0]);
     const [showIngreso, setShowIngreso] = useState(false);
     const [showGasto, setShowGasto] = useState(false);
+    const [showEditarGasto, setShowEditarGasto] = useState(false);
+    const [gastoAEditar, setGastoAEditar] = useState(null);
+    const [showEditarIngreso, setShowEditarIngreso] = useState(false);
+    const [ingresoAEditar, setIngresoAEditar] = useState(null);
 
     // Variable de entorno.-
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
@@ -25,6 +31,9 @@ export const CreateBudget = () => {
     const token = localStorage.getItem("jwt");
     const user = JSON.parse(localStorage.getItem("user"));
 
+    const refreshData = () => {
+        loadBudget();
+    };
     // Validar token
     useEffect(() => {
         const check = async () => {
@@ -94,6 +103,15 @@ export const CreateBudget = () => {
             const data = await res.json();
             alert(data.msg || "Error al eliminar el gasto");
         }
+    };
+
+    const handleEditGasto = (gasto) => {
+        setGastoAEditar(gasto);
+        setShowEditarGasto(true);
+    };
+    const handleEditIngreso = (ingreso) => {
+        setIngresoAEditar(ingreso);
+        setShowEditarIngreso(true);
     };
 
     // Función de eliminación de Ingreso (A implementar)
@@ -184,7 +202,7 @@ export const CreateBudget = () => {
                         <div className="col-md-4">
                             <ListaGastos
                                 gastos={gastos}
-                                onEdit={() => { }}
+                                onEdit={handleEditGasto}
                                 onDelete={BorrarGasto}
                             />
                         </div>
@@ -193,7 +211,7 @@ export const CreateBudget = () => {
                         <div className="col-md-4">
                             <ListaIngresos
                                 ingresos={ingresos}
-                                onEdit={() => { }}
+                                onEdit={handleEditIngreso}
                                 onDelete={BorrarIngreso} // Se pasa la función de eliminación
                                 moneda={monedaSeleccionada}
                             />
@@ -228,6 +246,21 @@ export const CreateBudget = () => {
                 token={token}
                 onAdded={RecargarInfo}
                 moneda={monedaSeleccionada}
+            />
+            <EditarIngreso
+                show={showEditarIngreso}
+                handleClose={() => setShowEditarIngreso(false)}
+                ingreso={ingresoAEditar}
+                token={token}
+                onUpdated={refreshData}
+            />
+
+            <EditarGasto
+                show={showEditarGasto}
+                handleClose={() => setShowEditarGasto(false)}
+                gasto={gastoAEditar}
+                token={token}
+                onUpdated={refreshData}
             />
             <div className="create_budget-volver_presupuesto">
                 <button

@@ -103,7 +103,7 @@ export const EditarIngreso = ({ show, handleClose, ingreso, token, onUpdated }) 
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                <Button variant="primary" onClick={handleSubmit}>Guardar Cambios</Button>
+                <Button className="btn-custom" onClick={handleSubmit}>Guardar Cambios</Button>
             </Modal.Footer>
         </Modal>
     );
