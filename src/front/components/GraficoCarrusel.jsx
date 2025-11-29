@@ -1,45 +1,40 @@
-import React, { useEffect } from "react"
-import { Graficos } from "./Graficos"
+import React from 'react';
+import { Carousel } from 'react-bootstrap';
+import { Graficos } from './Graficos';
 
-export const GraficoCarrusel = ({ ingresos, egresos }) => {
 
+export const GraficoCarrusel = ({ ingresos, egresos, moneda }) => {
     return (
-        <div id="graficosCarrusel" className="carousel slide" data-bs-ride="carousel">
+        <div className="table-container h-100 d-flex flex-column">
+            <div className="p-4 d-flex justify-content-between align-items-center border-bottom border-light">
+                <h5 className="m-0 fw-bold text-dark">
+                    <i className="bi bi-pie-chart-fill me-2 text-primary"></i> Análisis
+                </h5>
+            </div>
+            <div className="p-4 flex-grow-1 d-flex align-items-center justify-content-center">
+                <Carousel
+                    interval={null}
+                    variant="dark"
+                    className="w-100 custom-carousel"
+                >
+                    <Carousel.Item>
+                        <Graficos
+                            datos={ingresos}
+                            titulo="Distribución de Ingresos"
+                            moneda={moneda}
+                        />
+                    </Carousel.Item>
 
-            <div className="carousel-inner">
-
-                {/* Slide 1 — Egresos */}
-                <div className="carousel-item">
-                    <div className="text-center">
-                        <h5 className="fw-bold">Egresos</h5>
-                    </div>
-                    <div className="d-flex justify-content-center p-4">
-                        <Graficos datos={egresos || []} />
-                    </div>
-                </div>
-
-                {/* Slide 2 — Ingresos */}
-                <div className="carousel-item active">
-                    <div className="text-center">
-                        <h5 className="fw-bold">Ingresos</h5>
-                    </div>
-                    <div className="d-flex justify-content-center p-4">
-                        <Graficos datos={ingresos || []} />
-                    </div>
-                </div>
+                    <Carousel.Item>
+                        <Graficos
+                            datos={egresos}
+                            titulo="Distribución de Gastos"
+                            moneda={moneda} 
+                        />
+                    </Carousel.Item>
+                </Carousel>
 
             </div>
-
-            {/* Controles del carrusel */}
-            <button className="carousel-control-prev" type="button" data-bs-target="#graficosCarrusel" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden btn-custom">Anterior</span>
-            </button>
-
-            <button className="carousel-control-next" type="button" data-bs-target="#graficosCarrusel" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Siguiente</span>
-            </button>
         </div>
     );
-}
+};

@@ -839,3 +839,62 @@
   background-color: #004d3d;
   transform: scale(1.1);
 }
+
+/* ######################### Estilos para componentes del detalle presupuesto ######################### */
+.btn-modern-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  color: #adb5bd; 
+  cursor: pointer;
+}
+
+.btn-modern-icon.edit:hover {
+  background-color: #e7f5ff;
+  color: #0d6efd;
+  transform: translateY(-2px);
+}
+
+.btn-modern-icon.delete:hover {
+  background-color: #ffe3e3;
+  color: #dc3545;
+  transform: translateY(-2px);
+}
+
+.btn-modern-icon i {
+  font-size: 1.1rem;
+}
+
+
+.custom-carousel .carousel-indicators [data-bs-target] {
+  background-color: #0d6efd; 
+  height: 4px;
+  border-radius: 2px;
+}
+
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+  background-color: rgba(108, 117, 125, 0.5);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-size: 50%; 
+  transition: background-color 0.3s ease;
+}
+
+.custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
+  background-color: rgba(
+    13,
+    110,
+    253,
+    0.8
+  ); 
+}
