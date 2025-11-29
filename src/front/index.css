@@ -840,6 +840,17 @@
   transform: scale(1.1);
 }
 
+.titulo-seccion {
+  text-align: center;
+  margin: 40px 0;
+  font-family: "Jost", sans-serif;
+  font-weight: bold;
+}
+.subtitulo-seccion {
+  margin: 30px 0;
+  font-family: "Libre Franklin", sans-serif;
+}
+
 /* ######################### Estilos para componentes del detalle presupuesto ######################### */
 .btn-modern-icon {
   width: 35px;
@@ -851,7 +862,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  color: #adb5bd; 
+  color: #adb5bd;
   cursor: pointer;
 }
 
@@ -871,13 +882,11 @@
   font-size: 1.1rem;
 }
 
-
 .custom-carousel .carousel-indicators [data-bs-target] {
-  background-color: #0d6efd; 
+  background-color: #0d6efd;
   height: 4px;
   border-radius: 2px;
 }
-
 
 .custom-carousel .carousel-control-prev-icon,
 .custom-carousel .carousel-control-next-icon {
@@ -885,16 +894,11 @@
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-size: 50%; 
+  background-size: 50%;
   transition: background-color 0.3s ease;
 }
 
 .custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
 .custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
-  background-color: rgba(
-    13,
-    110,
-    253,
-    0.8
-  ); 
+  background-color: rgba(13, 110, 253, 0.8);
 }

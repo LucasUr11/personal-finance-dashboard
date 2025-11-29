@@ -7,10 +7,10 @@ export const SobreNosotros = () => {
     return (
         <div className="container mt-5 mb-5">
 
-            <h1 className="text-center mb-4">Sobre Nosotros</h1>
+            <h1 className="titulo-seccion">Sobre Nosotros</h1>
 
             <section className="mb-5">
-                <h3>Descripción del Proyecto</h3>
+                <h3 className="subtitulo-seccion">Descripción del Proyecto</h3>
                 <p>
                     Billetera Familiar es una herramienta diseñada para ayudar a las familias
                     a administrar su presupuesto de forma clara, sencilla y visual. Permite
@@ -20,7 +20,7 @@ export const SobreNosotros = () => {
             </section>
 
             <section className="mb-5">
-                <h3>Nuestro Equipo</h3>
+                <h3 className="subtitulo-seccion">Nuestro Equipo</h3>
                 <div className="row mt-4">
 
                     <div className="col-md-4">
@@ -121,7 +121,7 @@ export const SobreNosotros = () => {
             </section>
 
             <section className="mb-5">
-                <h3>Tecnologías Usadas</h3>
+                <h3 className="subtitulo-seccion">Tecnologías Usadas</h3>
                 <ul>
                     <li>React + Bootstrap</li>
                     <li>Python Flask</li>
@@ -132,7 +132,7 @@ export const SobreNosotros = () => {
             </section>
 
             <section className="mb-5">
-                <h3>Funciones a Futuro</h3>
+                <h3 className="subtitulo-seccion">Funciones a Futuro</h3>
                 <ul>
                     <li>Exportar reportes a Excel</li>
                     <li>Comparar presupuestos entre meses</li>
