@@ -199,22 +199,21 @@ export const CreateBudget = () => {
                     </h4>
 
                     <div className="row g-4">
-
-                        {/* Gastos */}
-                        <div className="col-md-4">
-                            <ListaGastos
-                                gastos={gastos}
-                                onEdit={handleEditGasto}
-                                onDelete={BorrarGasto}
-                            />
-                        </div>
-
                         {/* Ingresos */}
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                             <ListaIngresos
                                 ingresos={ingresos}
                                 onEdit={handleEditIngreso}
                                 onDelete={BorrarIngreso} // Se pasa la función de eliminación
+                                moneda={monedaSeleccionada}
+                            />
+                        </div>
+                        {/* Gastos */}
+                        <div className="col-md-6">
+                            <ListaGastos
+                                gastos={gastos}
+                                onEdit={handleEditGasto}
+                                onDelete={BorrarGasto}
                                 moneda={monedaSeleccionada}
                             />
                         </div>
@@ -254,7 +253,7 @@ export const CreateBudget = () => {
                 handleClose={() => setShowEditarIngreso(false)}
                 ingreso={ingresoAEditar}
                 token={token}
-                onUpdated={refreshData}
+                onUpdated={RecargarInfo}
             />
 
             <EditarGasto
@@ -262,7 +261,7 @@ export const CreateBudget = () => {
                 handleClose={() => setShowEditarGasto(false)}
                 gasto={gastoAEditar}
                 token={token}
-                onUpdated={refreshData}
+                onUpdated={RecargarInfo}
             />
             <div className="create_budget-volver_presupuesto">
                 <button

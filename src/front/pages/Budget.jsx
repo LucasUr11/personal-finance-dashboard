@@ -81,6 +81,8 @@ export const Budget = () => {
                     ) : budgets.length === 0 ? (
                         <div className="text-center py-5">
                             <div className="empty-state-icon">
+
+                                
                                 <i className="bi bi-wallet2"></i>
                             </div>
                             <h3 className="fw-bold text-secondary">No tienes presupuestos</h3>

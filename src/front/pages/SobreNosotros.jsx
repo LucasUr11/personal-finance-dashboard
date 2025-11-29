@@ -1,3 +1,6 @@
+import { FaReact, FaPython } from "react-icons/fa";
+import { SiFlask, SiSqlalchemy, SiJsonwebtokens, SiReact } from "react-icons/si";
+import { MdPictureAsPdf } from "react-icons/md";
 import JavierImg from "../assets/img/javier.jpg";
 import LucasImg from "../assets/img/lucas.jpeg";
 import ElizabethImg from "../assets/img/elizabeth.jpeg";
@@ -11,7 +14,7 @@ export const SobreNosotros = () => {
 
             <section className="mb-5">
                 <h3 className="subtitulo-seccion">Descripción del Proyecto</h3>
-                <p>
+                <p className="descripcion-seccion">
                     Billetera Familiar es una herramienta diseñada para ayudar a las familias
                     a administrar su presupuesto de forma clara, sencilla y visual. Permite
                     registrar ingresos, gastos, generar reportes en PDF y visualizar gráficos
@@ -122,25 +125,73 @@ export const SobreNosotros = () => {
 
             <section className="mb-5">
                 <h3 className="subtitulo-seccion">Tecnologías Usadas</h3>
-                <ul>
-                    <li>React + Bootstrap</li>
-                    <li>Python Flask</li>
-                    <li>SQLAlchemy</li>
-                    <li>JWT Authentication</li>
-                    <li>ReportLab para generación de PDFs</li>
-                </ul>
+                <div className="tech-grid">
+                    <div className="tech-item">
+                        <FaReact className="tech-icon" />
+                        <p>React + Bootstrap</p>
+                    </div>
+
+                    <div className="tech-item">
+                        <FaPython className="tech-icon" />
+                        <p>Python</p>
+                    </div>
+
+                    <div className="tech-item">
+                        <SiFlask className="tech-icon" />
+                        <p>Flask</p>
+                    </div>
+
+                    <div className="tech-item">
+                        <SiSqlalchemy className="tech-icon" />
+                        <p>SQLAlchemy</p>
+                    </div>
+
+                    <div className="tech-item">
+                        <SiJsonwebtokens className="tech-icon" />
+                        <p>JWT Auth</p>
+                    </div>
+
+                    <div className="tech-item">
+                        <MdPictureAsPdf className="tech-icon" />
+                        <p>ReportLab (PDF)</p>
+                    </div>
+                </div>
             </section>
+
 
             <section className="mb-5">
                 <h3 className="subtitulo-seccion">Funciones a Futuro</h3>
-                <ul>
-                    <li>Exportar reportes a Excel</li>
-                    <li>Comparar presupuestos entre meses</li>
-                    <li>Sincronización familiar multiusuario</li>
-                    <li>Gráficos avanzados por categoría</li>
-                </ul>
-            </section>
+                <div className="timeline">
+                    <div className="timeline-item">
+                        <div className="timeline-dot"></div>
+                        <h4>Comparar presupuestos entre meses.</h4>
+                        <span className="timeline-date">Enero 2026</span>
+                        <p>Visualizar patrones y analizar cambios financieros</p>
+                    </div>
 
+                    <div className="timeline-item">
+                        <div className="timeline-dot"></div>
+                        <h4>Exportar reportes a Excel</h4>
+                        <span className="timeline-date">Marzo 2026</span>
+                        <p>Facilitar la descarga de los datos en formatos de uso común.</p>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-dot"></div>
+                        <h4>Sincronización multiusuario familiar</h4>
+                        <span className="timeline-date">Abril 2026</span>
+                        <p>Compartir presupuestos entre miembros de la familia.</p>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-dot"></div>
+                        <h4>Aplicación para Android & iOS</h4>
+                        <span className="timeline-date">TBD</span>
+                        <p>Acceso móvil completo para administrar desde cualquier lugar.</p>
+                    </div>
+
+                </div>
+            </section>
         </div>
     );
 };
