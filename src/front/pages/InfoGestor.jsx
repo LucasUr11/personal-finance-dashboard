@@ -32,7 +32,7 @@ export const InfoGestor = () => {
                 <div className="info-gestor_consejos">
                     <div>
                         <h3>
-                            5 consejos para elaborar un buen presupuesto familiar
+                            4 consejos para elaborar un buen presupuesto familiar
                         </h3>
                         <p>
                             Un presupuesto mensual no se trata solo de sumas y restas. Para que realmente funcione, debe estar alineado con las necesidades del hogar, ser flexible y mantenerse actualizado.
