@@ -4,7 +4,6 @@ import { validateToken } from "../js/auth";
 import { currencies } from "../js/utils";
 
 // Componentes importados
-import { Graficos } from '../components/Graficos';
 import { Balance } from '../components/Balance';
 import { ListaIngresos } from '../components/ListaIngresos';
 import { ListaGastos } from '../components/ListaGastos';

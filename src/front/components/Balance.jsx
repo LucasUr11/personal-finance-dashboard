@@ -1,10 +1,16 @@
 import React from "react";
 import { formatMoney } from "../js/utils";
+import { Graficos } from "./Graficos";
 
 export const Balance = ({ ingresos, gastos, moneda }) => {
     const totalIngresos = ingresos.reduce((sum, i) => sum + i.amount, 0);
     const totalGastos = gastos.reduce((sum, g) => sum + g.amount, 0);
     const disponible = totalIngresos - totalGastos;
+
+    const datosBalance = [
+        { category: "Ingresos", amount: totalIngresos },
+        { category: "Gastos", amount: totalGastos }
+    ]
 
     return (
         <div className="table-container h-100 d-flex flex-column">
@@ -31,6 +37,15 @@ export const Balance = ({ ingresos, gastos, moneda }) => {
                     <span className={`fw-bold fs-5 ${disponible >= 0 ? 'text-primary' : 'text-danger'}`}>
                         {formatMoney(disponible, moneda)}
                     </span>
+                </div>
+
+                {/* Gráfico */}
+                <div className="mt-4 d-flex justify-content-center">
+                    <Graficos
+                        datos={datosBalance}
+                        titulo="Comparación Ingresos con Gastos"
+                        label="Monto"
+                    />
                 </div>
 
             </div>
