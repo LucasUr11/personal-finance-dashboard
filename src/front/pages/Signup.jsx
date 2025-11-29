@@ -52,7 +52,7 @@ export const Signup = () => {
 			}
 
 		} catch (error) {
-			setError(error.message)
+			setError("Error en las credenciales.")
 		} finally {
 			setLoading(false)
 		}
