@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import Icon from "../assets/img/Icon.jpeg"
+import icon from "../assets/img"
 import { useEffect } from "react";
 import { validateToken } from "../js/auth";
 
@@ -21,10 +21,10 @@ export const Navbar = () => {
 				<div className="d-flex aling-items-center">
 					<Link to="/Home">
 						<img
-							src={Icon}
+							src={icon}
 							alt=""
-							width={75}
-							height={75}
+							width={100}
+							height={100}
 							className="rounded-4 border"
 						/>
 					</Link>

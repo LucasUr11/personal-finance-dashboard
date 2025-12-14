@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import home_page from "../assets/img/home_9.jpg"
+
 
 
 export const Home = () => {
@@ -9,11 +9,7 @@ export const Home = () => {
     return (
         <div className="d-flex">
             <div>
-                <img
-                    src={home_page}
-                    alt="home"
-                    className="home-img"
-                />
+
             </div>
 
             <div className="home-text">

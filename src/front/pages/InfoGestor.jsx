@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import infoGestorImg1 from "../assets/img/home_13.jpg"
-import infoGestorImg2 from "../assets/img/home_15.jpeg"
 
 export const InfoGestor = () => {
 
@@ -90,19 +88,6 @@ export const InfoGestor = () => {
                         Home
                     </button>
                 </div>
-            </div>
-            <div className="info-gestor_container-img">
-                <img
-                    src={infoGestorImg1}
-                    alt="familia_presupuesto"
-                    className="info-gestor_img"
-                />
-                <img
-                    src={infoGestorImg2}
-                    alt="familia_presupuesto"
-                    className="info-gestor_img-2"
-                />
-
             </div>
         </div>
     )
