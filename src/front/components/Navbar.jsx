@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import icon from "../assets/img"
+import icon from "../assets/img/logo-wisetrack.png"
+import iconText from "../assets/img/logo-texto.png"
 import { useEffect } from "react";
 import { validateToken } from "../js/auth";
 
@@ -25,13 +26,17 @@ export const Navbar = () => {
 							alt=""
 							width={100}
 							height={100}
-							className="rounded-4 border"
 						/>
 					</Link>
 				</div>
 
 				<div className="navbar-text">
-					<h1>WiseTrack</h1>
+					<Link to="/Home">
+						<img
+							src={iconText}
+							height={100}
+						/>
+					</Link>
 				</div>
 			</div>
 

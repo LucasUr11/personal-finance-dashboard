@@ -5,11 +5,11 @@ export const Footer = () => {
 		<div className="footer">
 
 			<div className="footer-title">
-				<h4 className="">Tu familia...Tus metas... Tu Billetera Familiar!</h4>
+				<h4 className="">En proceso...</h4>
 			</div>
 
 			<div className="footer-copyright">
-				<p>©2025. Billetera Familiar SA. Todos los derechos reservados.</p>
+				<p>©2026. WiseTrack SA. Todos los derechos reservados.</p>
 			</div>
 		</div>
 	)
