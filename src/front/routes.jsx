@@ -15,7 +15,6 @@ import { DetallePresupuesto } from "./pages/DetallePresupuesto";
 import { AgregarGasto } from "./components/AgregarGasto";
 import { AgregarIngreso } from "./components/AgregarIngreso";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { InfoGestor } from "./pages/InfoGestor";
 import { ListaIngresos } from "./components/ListaIngresos";
 import { ListaGastos } from "./components/ListaGastos";
 import { Balance } from "./components/Balance";
@@ -31,7 +30,6 @@ export const router = createBrowserRouter(
       {/* Homepage */}
       <Route index element={<Home />} />
       <Route path="Home" element={<Home />} />
-      <Route path="InfoGestor" element={<InfoGestor />} />
 
       {/* Auth Routes */}
       <Route path="login" element={<Login />} />
@@ -59,8 +57,6 @@ export const router = createBrowserRouter(
       <Route path="ListaGastos" element={<ListaGastos />} />
       <Route path="Balance" element={<Balance />} />
       <Route path="GraficoCarrusel" element={<GraficoCarrusel />} />
-
-
 
     </Route>
   )
