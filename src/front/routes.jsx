@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
-import { Signup } from "./pages/Signup";
-import { Login } from "./pages/Login";
 import { Budget } from "./pages/Budget";
 import { CreateBudget } from "./pages/CreateBudget";
 import { DetallePresupuesto } from "./pages/DetallePresupuesto";
@@ -30,10 +28,6 @@ export const router = createBrowserRouter(
       {/* Homepage */}
       <Route index element={<Home />} />
       <Route path="Home" element={<Home />} />
-
-      {/* Auth Routes */}
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
 
       {/* Budget Routes */}
       <Route path="budget" element={

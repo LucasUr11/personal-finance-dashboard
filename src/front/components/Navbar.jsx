@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import icon from "../assets/img/logo-wisetrack.png"
-import iconText from "../assets/img/logo-texto.png"
+import icon from "../assets/img/logo_2.png"
+import iconText from "../assets/img/logo-texto_2.png"
 
 export const Navbar = () => {
 
@@ -10,7 +10,7 @@ export const Navbar = () => {
 	const handleLogout = () => {
 		localStorage.removeItem("jwt");
 		localStorage.removeItem("user");
-		navigate("/login");
+		navigate("/");
 	};
 
 	return (
@@ -21,18 +21,15 @@ export const Navbar = () => {
 					<Link to="/Home">
 						<img
 							src={icon}
-							width={90}
-							height={90}
+							width={50}
+							height={50}
 						/>
 					</Link>
 				</div>
 
-				<div>
+				<div className="navbar-text">
 					<Link to="/Home">
-						<img
-							src={iconText}
-							height={90}
-						/>
+						<h5>WISETRACK</h5>
 					</Link>
 				</div>
 			</div>
@@ -41,28 +38,9 @@ export const Navbar = () => {
 			<div className="d-flex align-items-center gap-2">
 
 				{/* Si el token NO existe, muestra el login y el signup */}
-				{!token && (
+				{/* {!token && (
 
-					<>
-						<div className="navbar_buttons">
-							<button
-								className="btn navbar_buttons-btn"
-								onClick={() => navigate("/signup")}
-							>
-								REGISTRAR
-							</button>
-						</div>
-						<div className="navbar_buttons">
-							<button
-								className="btn navbar_buttons-btn"
-								onClick={() => navigate("/login")}
-							>
-								INICIAR SESION
-							</button>
-						</div>
-					</>
-
-				)}
+				)} */}
 
 				{/* Si el token SI existe, mostrar Cerrar sesion */}
 				{token && (

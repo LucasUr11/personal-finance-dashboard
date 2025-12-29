@@ -17,7 +17,7 @@ export const Budget = () => {
         const checkAndLoadBudgets = async () => {
             const valid = await validateToken();
             if (!valid) {
-                navigate("/login");
+                navigate("/");
             } else {
                 loadUserBudgets();
             }
@@ -82,7 +82,7 @@ export const Budget = () => {
                         <div className="text-center py-5">
                             <div className="empty-state-icon">
 
-                                
+
                                 <i className="bi bi-wallet2"></i>
                             </div>
                             <h3 className="fw-bold text-secondary">No tienes presupuestos</h3>
