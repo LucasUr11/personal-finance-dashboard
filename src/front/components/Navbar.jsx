@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import icon from "../assets/img/logo_2.png"
-import iconText from "../assets/img/logo-texto_2.png"
 
 export const Navbar = () => {
 

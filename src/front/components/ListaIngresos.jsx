@@ -3,8 +3,9 @@ import { formatMoney } from "../js/utils";
 
 export const ListaIngresos = ({ ingresos, onEdit, onDelete, moneda }) => {
     return (
-        <div className="table-container">
-            <div className="p-4 d-flex justify-content-between align-items-center border-bottom border-light">
+        <div>
+
+            <div className="create_budget-ingresos">
                 <h5 className="m-0 fw-bold text-dark">
                     <i className="bi bi-graph-up-arrow me-2 text-success"></i> Ingresos
                 </h5>
@@ -16,19 +17,22 @@ export const ListaIngresos = ({ ingresos, onEdit, onDelete, moneda }) => {
             </div>
 
             {ingresos.length === 0 ? (
-                <div className="empty-state">
-                    <i className="bi bi-cash-coin text-success"></i>
+
+                <div className="create_budget-sin_ingresos">
+                    <i className="bi bi-cash-coin"></i>
                     <p className="fw-medium m-0 text-muted">No hay ingresos registrados.</p>
                 </div>
+
             ) : (
-                <div className="table-responsive flex-grow-1">
+
+                <div className="table-responsive create_budget-lista_ingresos">
                     <table className="table custom-table">
                         <thead className="thead-income">
                             <tr>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Categoría</th>
                                 <th scope="col" className="text-end">Monto</th>
-                                <th scope="col" className="text-center" style={{ width: '120px' }}>Acciones</th>
+                                <th scope="col" className="text-center acciones">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,19 +46,19 @@ export const ListaIngresos = ({ ingresos, onEdit, onDelete, moneda }) => {
                                         </span>
                                     </td>
                                     <td>
-                                        <div className="d-flex justify-content-center gap-2">
-                                            
-                                            <button 
-                                                className="btn-modern-icon edit" 
-                                                onClick={() => onEdit(item)} 
+                                        <div className="create_budget-acciones">
+
+                                            <button
+                                                className="create_budget-btn_icon create_budget-btn_edit"
+                                                onClick={() => onEdit(item)}
                                                 title="Editar Ingreso"
                                             >
                                                 <i className="bi bi-pencil-square"></i>
                                             </button>
 
-                                            <button 
-                                                className="btn-modern-icon delete" 
-                                                onClick={() => onDelete(item.id)} 
+                                            <button
+                                                className="create_budget-btn_icon create_budget-btn_delete"
+                                                onClick={() => onDelete(item.id)}
                                                 title="Eliminar Ingreso"
                                             >
                                                 <i className="bi bi-trash3"></i>
@@ -67,7 +71,9 @@ export const ListaIngresos = ({ ingresos, onEdit, onDelete, moneda }) => {
                         </tbody>
                     </table>
                 </div>
+
             )}
+
         </div>
     );
 };

@@ -14,16 +14,15 @@
 /* #################################################################### */
 
 /* 
-  Verde Oscuro: #16302B - Color Principal
-  Bordo: #390517
   Beige: #A38560
-  Negro: #03110D
-  Gris: #E0E0E0
-  Naranja: #A44520
+  Azul: #0048BA
+  Verde Claro: #0F5C4B
+  Verde Oscuro: #1E3D34
+  Bordo: #CD2626
 */
 
 #root {
-  background-color: #E0E0E0;
+  background-color: #FFF;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -37,11 +36,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff0a;
-  backdrop-filter: blur(8px);
+  background-color: #A38560;
   width: 100%;
   padding-left: 15px;
-  border-bottom: 1.5px solid #A38560;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #A3856040 0%,
+    #A3856026 40%,
+    #A385600d 70%,
+    #A3856000 100%
+  );
 }
 
 .navbar-container {
@@ -60,7 +65,7 @@
   font-family: "Oxanium", sans-serif;
   font-weight: 250;
   letter-spacing: 3.5px;
-  font-size: 23px;
+  font-size: 20px;
   margin: 0;
   color: #16302B;
 }
@@ -129,7 +134,7 @@ a {
 }
 
 .form_input {
-	background-color: #eee;
+	background-color: #EEE;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
@@ -137,7 +142,7 @@ a {
 }
 
 .auth_section_container {
-	background-color: #fff;
+	background-color: #FFF;
 	border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
@@ -207,10 +212,8 @@ a {
 }
 
 .overlay {
-	background: linear-gradient(to right, #1B3F38, #16302B);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 0 0;
+	background: #1E3D34;
+	background: linear-gradient(to right, #0F5C4B, #1E3D34);
 	color: #FFFFFF;
 	position: relative;
 	left: -100%;
@@ -287,22 +290,23 @@ a {
 .budget {
   min-height: 100vh;
   width: 100%;
-  background-color: #f0f2f5;
   padding-bottom: 3rem;
-  /* display: flex; flex-direction: column; */
 }
 
-.budget-button {
-  background-color: #0e6b64;
-  color: #fff;
+.budget_button {
+  background-color: #0F5C4B;
+  color: #FFF;
   border: none;
+  border-radius: 50rem;
+  padding: 8px;
+  margin-top: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.budget-button:hover {
-  color: #fff;
-  background: #00a884;
-  box-shadow: 0 4px 20px #00a88480;
+.budget_button:hover {
+  color: #FFF;
+  background: #0F5C4B;
+  box-shadow: 0 4px 20px #0F5C4B80;
   transform: translateY(-3px);
 }
 
@@ -327,21 +331,83 @@ a {
   font-size: 15px;
 }
 
-.budget-list {
-  background-color: #ffffff;
+.budget_list {
+  background-color: #FFFFFF;
   border-radius: 2rem;
   padding: 3rem;
   margin: 20px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-
+  box-shadow: 0 4px 20px #0000000D;
+  border: 1px solid #0000000D;
   transition: all 0.3s ease;
   position: relative;
 }
 
+/* ######################### ListaPresupuestos ######################### */
+
+/* Icono cuando no hay presupuestos creados */
+.budget_vacio-icon {
+  font-size: 4rem;
+  opacity: 0.25;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.lista_presupuestos-card {
+  transition: all 0.3s ease;
+  border: none;
+  background: linear-gradient(135deg, #0F5C4B 0%, #1E3D34 100%);
+  color: #FFF;
+  height: 100%;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.lista_presupuestos-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px #0E6B6466;
+}
+
+.lista_presupuestos_card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.lista_presupuestos_card-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.lista_presupuestos_card-content_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  margin-inline-end: 10px;
+  background-color: #FFFFFF39;
+}
+
+.lista_presupuestos_card-content_presupuesto {
+  overflow: hidden;
+}
+
+.lista_presupuestos_card-content_presupuesto h6 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.lista_presupuestos_card-button-delete:hover {
+  color: #CD2626;
+}
+
 /* Ajuste para móviles */
 @media (max-width: 768px) {
-  .budget-list {
+  .budget_list {
     padding: 1.5rem;
     border-radius: 1.5rem;
   }
@@ -351,19 +417,19 @@ a {
 
 /* Badge del contador total */
 .budget-counter-badge {
-  background-color: rgba(14, 107, 100, 0.1);
-  color: #0e6b64;
-  border: 1px solid rgba(14, 107, 100, 0.2);
+  background-color: #0E6B641A;
+  color: #1E3D34;
+  border: 1px solid #0E6B6433;
   font-weight: 600;
 }
 
 /* Estilos para el Skeleton Loader (Carga) */
 .skeleton-card {
   height: 200px;
-  background-color: #f8f9fa;
+  background-color: #F8F9FA;
   border-radius: 1rem;
   animation: pulse 1.5s infinite ease-in-out;
-  border: 1px solid #e9ecef;
+  border: 1px solid #E9ECEF;
 }
 
 @keyframes pulse {
@@ -376,14 +442,6 @@ a {
   100% {
     opacity: 0.6;
   }
-}
-
-/* Icono del estado vacío */
-.empty-state-icon {
-  font-size: 4rem;
-  opacity: 0.25;
-  color: #0e6b64;
-  margin-bottom: 1rem;
 }
 
 /* ######################### Estilos para el CreateBudget ######################### */
@@ -407,17 +465,17 @@ a {
 }
 
 .create_budget-input_button button {
-  background-color: #0e6b64;
-  border-color: #0e6b64;
-  color: #fff;
+  background-color: #1E3D34; /* verde oscuro */
+  border-color: #1E3D34; /* verde oscuro */
+  color: #FFF;
 }
 
 .create_budget-input_button button:hover,
 .create_budget-input_button button:focus {
-  background-color: #00a884;
-  border-color: #00a884;
-  color: #fff;
-  box-shadow: 0 4px 20px #00a88480;
+  color: #FFF;
+  background-color: #0F5C4B; /* verde claro */
+  border-color: #0F5C4B; /* verde claro */
+  box-shadow: 0 4px 20px #0F5C4B80; /* verde claro */
 }
 
 .create_budget-ingreso_gasto {
@@ -427,27 +485,27 @@ a {
 }
 
 .create_budget-button_ingreso {
-  border-color: #006e57;
-  color: #006e57;
+  border-color: #1E3D34; /* verde oscuro */
+  color: #1E3D34; /* verde oscuro */
 }
 
 .create_budget-button_ingreso:hover {
-  border-color: #00a884;
-  color: #fff;
-  background-color: #00a884;
-  box-shadow: 0 4px 20px #00a88480;
+  color: #FFF;
+  border-color: #0F5C4B; /* verde claro */
+  background-color: #0F5C4B; /* verde claro */
+  box-shadow: 0 4px 20px #0F5C4B80; /* verde claro */
 }
 
 .create_budget-button_gasto {
-  border-color: #dc2525;
-  color: #dc2525;
+  border-color: #CD2626; /* bordo */
+  color: #CD2626; /* bordo */
 }
 
 .create_budget-button_gasto:hover {
-  border-color: #dc2525;
-  color: #fff;
-  background-color: #dc2525;
-  box-shadow: 0 4px 20px #dc252580;
+  color: #FFF;
+  border-color: #CD2626; /* bordo */
+  background-color: #CD2626; /* bordo */
+  box-shadow: 0 4px 20px #CD262680; /* bordo */
 }
 
 .create_budget-volver_presupuesto {
@@ -456,17 +514,99 @@ a {
 }
 
 .create_budget-volver_presupuesto button {
-  background-color: #ec9a06;
-  border-color: #ec9a06;
+  background-color: #A38560;
+  border-color: #A38560;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .create_budget-volver_presupuesto button:hover {
-  color: #fff;
-  background: #ec9a06;
-  border-color: #ec9a06;
-  box-shadow: 0 4px 20px #ec9a0680;
+  color: #FFF;
+  background: #A38560;
+  border-color: #A38560;
+  box-shadow: 0 4px 20px #A3856080;
   transform: translateX(-3px);
+}
+
+/* ? */
+
+.create_budget-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.create_budget-ingresos, .create_budget-gastos, .create_budget-balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.create_budget-balance h5 i {
+  color: #0048BA;
+}
+
+.create_budget-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.create_budget-description_ingresos-gastos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.create_budget-description_disponible {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  margin-top: 4px;
+}
+
+.create_budget-description_disponible .valor_positivo {
+  color: #0048BA;
+}
+
+.create_budget-description_disponible .valor_negativo {
+  color: #CD2626;
+}
+ 
+/**/
+
+.create_budget-sin_gastos {
+  display: flex;
+  gap: 5px;
+  margin: 8px 22px;
+}
+
+.create_budget-sin_gastos i {
+  color: #CD2626;
+}
+
+.create_budget-lista_gastos .acciones {
+  width: 150px;
+}
+
+/**/
+
+.create_budget-sin_ingresos {
+  display: flex;
+  gap: 5px;
+  margin: 8px 22px;
+}
+
+.create_budget-sin_ingresos i {
+  color: #0F5C4B;
+}
+
+.create_budget-lista_ingresos .acciones {
+  width: 150px;
 }
 
 /* ######################### Estilos para el Detalle Presupuesto ######################### */
@@ -485,44 +625,44 @@ a {
 }
 
 .detalle_presupuesto-buttons .ingreso {
-  border-color: #006e57;
-  color: #006e57;
+  border-color: #1E3D34;
+  color: #1E3D34;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detalle_presupuesto-buttons .ingreso:hover {
-  border-color: #00a884;
-  background-color: #00a884;
-  color: #fff;
-  box-shadow: 0 4px 20px #00a88480;
+  color: #FFF;
+  border-color: #0F5C4B;
+  background-color: #0F5C4B;
+  box-shadow: 0 4px 20px #0F5C4B80;
   transform: translateY(-3px);
 }
 
 .detalle_presupuesto-buttons .gasto {
-  border-color: #dc2525;
-  color: #dc2525;
+  border-color: #CD2626;
+  color: #CD2626;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detalle_presupuesto-buttons .gasto:hover {
-  border-color: #dc2525;
-  background-color: #dc2525;
-  color: #fff;
-  box-shadow: 0 4px 20px #dc252580;
+  color: #FFF;
+  border-color: #CD2626;
+  background-color: #CD2626;
+  box-shadow: 0 4px 20px #CD262680;
   transform: translateY(-3px);
 }
 
 .detalle_presupuesto-buttons .pdf {
-  border-color: #0d6efd;
-  color: #0d6efd;
+  border-color: #0048BA;
+  color: #0048BA;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detalle_presupuesto-buttons .pdf:hover {
-  border-color: #0d6efd;
-  background-color: #0d6efd;
-  color: #fff;
-  box-shadow: 0 4px 20px #0d6efd80;
+  color: #FFF;
+  border-color: #0048BA;
+  background-color: #0048BA;
+  box-shadow: 0 4px 20px #0048BA80;
   transform: translateY(-3px);
 }
 
@@ -533,66 +673,55 @@ a {
 }
 
 .detalle_presupuesto_button {
-  background-color: #ec9a06;
-  border-color: #ec9a06;
-  color: #fff;
+  color: #FFF;
+  background-color: #A38560;
+  border-color: #A38560;
   position: absolute;
   font-size: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detalle_presupuesto_button:hover {
-  background-color: #ec9a06;
-  border-color: #ec9a06;
-  color: #fff;
-  box-shadow: 0 4px 20px #ec9a0680;
+  color: #FFF;
+  background-color: #A38560;
+  border-color: #A38560;
+  box-shadow: 0 4px 20px #A3856080;
   transform: translateX(-3px);
 }
 
-/* ######################### Estilos para el Footer ######################### */
-
-.footer {
-  height: 100%;
-  width: 100%;
-  background-color: #16302B;
+.graficos {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 250px;
 }
 
-.footer-title {
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  display: flex;
-  color: #fff;
+.detalle_presupuesto-container .card {
+  background-color: #FFF;
+  transition: all 0.3s ease-in-out;
 }
 
-.footer-title h4 {
-  margin: 0;
-  padding: 10px 0;
-}
-
-.footer-copyright {
-  color: #a7a7a7;
-  display: flex;
-}
-
-.footer-copyright p {
-  margin: 0;
-  padding: 10px 0;
+.detalle_presupuesto-container .card:hover {
+  box-shadow: 0 4px 20px #0048BA80;
 }
 
 /* Skeleton */
+.skeleton_detalle h4 {
+  color: #555;
+}
+
 .skeleton-box {
-  background: #e3e3e3;
+  background: #E3E3E3;
   border-radius: 8px;
   animation: loading 1.2s infinite linear;
+  height: 30px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .skeleton-card {
   height: 200px;
-  background: #e3e3e3;
+  background: #E3E3E3;
   border-radius: 12px;
   animation: loading 1.2s infinite linear;
 }
@@ -603,76 +732,88 @@ a {
 
 @keyframes loading {
   0% {
-    background-color: #e0e0e0;
+    background-color: #E0E0E0;
   }
   50% {
-    background-color: #d5d5d5;
+    background-color: #D5D5D5;
   }
   100% {
-    background-color: #e0e0e0;
+    background-color: #E0E0E0;
   }
 }
 
 @keyframes loading {
   0% {
-    background-color: #e3e3e3;
+    background-color: #E3E3E3;
   }
   50% {
-    background-color: #d4d4d4;
+    background-color: #D4D4D4;
   }
   100% {
-    background-color: #e3e3e3;
+    background-color: #E3E3E3;
   }
 }
 
-/* Estilos varios */
-.color-custom {
-  color: #00a884;
+.agregar_ingreso-header_modal {
+  background-color: #0F5C4B;
+  width: 100%;
+  gap: 70px;
 }
 
-.btn-outline-custom {
-  color: #0e6b64;
-  border-color: #0e6b64;
-  background-color: transparent;
-}
-.btn-outline-custom:hover {
-  color: #ffffff;
-  background-color: #0e6b64;
-  border-color: #0e6b64;
-}
-
-.btn-outline-custom:focus {
-  box-shadow: 0 0 0 0.25rem rgba(14, 107, 100, 0.5);
-}
-
-.btn-custom {
-  background-color: #0e6b64;
-  border-color: #0e6b64;
-  color: #ffffff;
+.agregar_ingreso-btn {
+  background-color: #0F5C4B;
+  border-color: #0F5C4B;
+  color: #FFFFFF;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
 
-.btn-custom:hover {
-  background-color: #0b524d;
-  border-color: #0a4b46;
-  color: #ffffff;
+.agregar_ingreso-btn:hover {
+  background-color: #0F5C4B;
+  border-color: #0F5C4B;
+  color: #FFFFFF;
 }
 
-.btn-custom:focus {
-  background-color: #0b524d !important;
-  border-color: #0a4b46 !important;
-  box-shadow: 0 0 0 0.25rem rgba(14, 107, 100, 0.5) !important;
+.agregar_ingreso-btn:focus {
+  background-color: #0F5C4B;
+  border-color: #0F5C4B;
+  box-shadow: 0 0 0 0.25rem #0F5C4B80;
 }
-.header-modal {
-  background-color: #5b5e5d;
+
+.agregar_gasto-header_modal {
+  background-color: #CD2626;
   width: 100%;
   gap: 70px;
-  box-shadow: 0px 4px 26px 1px rgba(154, 158, 158, 0.82);
 }
 
+.agregar_gasto-btn {
+  background-color: #CD2626;
+  border-color: #CD2626;
+  color: #FFFFFF;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+.agregar_gasto-btn:hover {
+  background-color: #CD2626;
+  border-color: #CD2626;
+  color: #FFFFFF;
+}
+
+.agregar_gasto-btn:focus {
+  background-color: #CD2626;
+  border-color: #CD2626;
+  box-shadow: 0 0 0 0.25rem #CD262680;
+}
 /* ######################### Estilos para componentes del detalle presupuesto ######################### */
-.btn-modern-icon {
+
+.create_budget-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.create_budget-btn_icon {
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -682,35 +823,35 @@ a {
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  color: #adb5bd;
+  color: #E0E0E0;
   cursor: pointer;
 }
 
-.btn-modern-icon.edit:hover {
-  background-color: #e7f5ff;
-  color: #0d6efd;
+.create_budget-btn_edit:hover {
+  background-color: #0048BA;
+  color: #FFF;
   transform: translateY(-2px);
 }
 
-.btn-modern-icon.delete:hover {
-  background-color: #ffe3e3;
-  color: #dc3545;
+.create_budget-btn_delete:hover {
+  background-color: #CD2626;
+  color: #FFF;
   transform: translateY(-2px);
 }
 
-.btn-modern-icon i {
+.create_budget-btn_icon i {
   font-size: 1.1rem;
 }
 
 .custom-carousel .carousel-indicators [data-bs-target] {
-  background-color: #0d6efd;
+  background-color: #0048BA;
   height: 4px;
   border-radius: 2px;
 }
 
 .custom-carousel .carousel-control-prev-icon,
 .custom-carousel .carousel-control-next-icon {
-  background-color: rgba(108, 117, 125, 0.5);
+  background-color: #E0E0E0;
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
@@ -720,5 +861,5 @@ a {
 
 .custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
 .custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
-  background-color: rgba(13, 110, 253, 0.8);
+  background-color: #0048BA;
 }

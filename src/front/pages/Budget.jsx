@@ -68,21 +68,20 @@ export const Budget = () => {
                         Gestiona tus presupuestos aquí
                     </p>
                     <button
-                        className="btn budget-button rounded-pill px-4 py-2 mt-3"
+                        className="btn budget_button"
                         onClick={() => navigate("/CreateBudget")}
                     >
                         <i className="bi bi-plus-lg me-2"></i>
                         Crear Nuevo Presupuesto
                     </button>
                 </div>
-                <div className="budget-list">
+
+                <div className="budget_list">
                     {loading ? (
                         <SkeletonBudgets />
                     ) : budgets.length === 0 ? (
                         <div className="text-center py-5">
-                            <div className="empty-state-icon">
-
-
+                            <div className="budget_vacio-icon">
                                 <i className="bi bi-wallet2"></i>
                             </div>
                             <h3 className="fw-bold text-secondary">No tienes presupuestos</h3>
@@ -106,6 +105,7 @@ export const Budget = () => {
                         </div>
                     )}
                 </div>
+
             </div>
         </div>
     );

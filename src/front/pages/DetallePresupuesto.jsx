@@ -138,14 +138,15 @@ export const DetallePresupuesto = () => {
 
 
     const SkeletonDetalle = () => (
-        <div className="container mt-5 text-center">
+        <div className="skeleton_detalle container">
 
-            <h4 className="mb-4" style={{ color: "#555" }}>
+            <h4 className="mb-4">
                 Cargando detalles del presupuesto...
             </h4>
 
-            <div className="skeleton-box mb-3"
-                style={{ height: "30px", width: "60%", margin: "0 auto" }}>
+            <div
+                className="skeleton-box mb-3"
+            >
             </div>
 
             <div className="row mt-4">
@@ -229,8 +230,8 @@ export const DetallePresupuesto = () => {
             <div className="row g-4 mb-5">
 
                 {/*  Gráfico de Resumen */}
-                <div className="col-md-6">
-                    <div className="card h-100" style={{ backgroundColor: "#f2f2f2" }}>
+                <div className="detalle_presupuesto-container col-md-6">
+                    <div className="card h-100">
                         <div className="card-body">
                             <GraficoCarrusel ingresos={ingresos} egresos={gastos} />
                         </div>
@@ -238,8 +239,8 @@ export const DetallePresupuesto = () => {
                 </div>
 
                 {/* Balance */}
-                <div className="col-md-6">
-                    <div className="card h-100" style={{ backgroundColor: "#f2f2f2" }}>
+                <div className="detalle_presupuesto-container col-md-6">
+                    <div className="card h-100">
                         <div className="card-body">
                             <Balance
                                 ingresos={ingresos}

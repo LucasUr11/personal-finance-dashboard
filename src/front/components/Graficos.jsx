@@ -43,10 +43,10 @@ export const Graficos = ({
 
     // Generar colores de forma simple (puedes expandir esta paleta)
     const coloresBase = [
-        'rgba(255, 99, 132, 0.8)', // Rojo
-        'rgba(54, 162, 235, 0.8)', // Azul
-        'rgba(255, 206, 86, 0.8)', // Amarillo
-        'rgba(75, 192, 192, 0.8)', // Turquesa
+        'rgba(205, 38, 38, 1)', // Rojo
+        'rgba(0, 72, 186, 1)', // Azul
+        'rgba(163, 133, 96, 1)', // Amarillo
+        'rgba(15, 92, 75, 1)', // Turquesa
         'rgba(153, 102, 255, 0.8)', // Violeta
         'rgba(255, 159, 64, 0.8)', // Naranja
     ];
@@ -81,7 +81,7 @@ export const Graficos = ({
     return (
         <div className="p-3 border rounded h-100">
             <h5 className="mb-3 text-center">{titulo}</h5>
-            <div style={{ height: '250px', width: '400px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div className='graficos'>
                 <Pie data={dataGrafico} options={opcionesGrafico} />
             </div>
         </div>

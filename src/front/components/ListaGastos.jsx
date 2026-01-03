@@ -5,8 +5,8 @@ import { formatMoney } from "../js/utils";
 export const ListaGastos = ({ gastos, onEdit, onDelete, moneda }) => {
     return (
         <div className="table-container">
-            
-            <div className="p-4 d-flex justify-content-between align-items-center border-bottom border-light">
+
+            <div className="create_budget-gastos">
                 <h5 className="m-0 fw-bold text-dark">
                     <i className="bi bi-graph-down-arrow me-2 text-danger"></i> Gastos
                 </h5>
@@ -16,29 +16,33 @@ export const ListaGastos = ({ gastos, onEdit, onDelete, moneda }) => {
                     </span>
                 )}
             </div>
+
             {gastos.length === 0 ? (
-                <div className="empty-state">
-                    <i className="bi bi-receipt text-danger"></i>
-                    <p className="fw-medium m-0 text-muted">No hay gastos registrados.</p>
+
+                <div className="create_budget-sin_gastos">
+                    <i className="bi bi-receipt"></i>
+                    <p className="fw-medium text-muted">No hay gastos registrados.</p>
                 </div>
+
             ) : (
-                <div className="table-responsive flex-grow-1">
-                    <table className="table custom-table">
+
+                <div className="table-responsive create_budget-lista_gastos">
+                    <table className="table">
                         <thead className="thead-expense">
                             <tr>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Categoría</th>
                                 <th scope="col" className="text-end">Monto</th>
-                                <th scope="col" className="text-center" style={{ width: '120px' }}>Acciones</th>
+                                <th scope="col" className="text-center acciones">Acciones</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             {gastos.map((item) => (
                                 <tr key={item.id}>
                                     <td><span className="text-desc">{item.description}</span></td>
                                     <td><span className="category-badge">{item.category}</span></td>
-                                    
+
                                     <td className="text-end">
                                         <span className="amount-negative">
                                             - {formatMoney(item.amount, moneda)}
@@ -46,19 +50,19 @@ export const ListaGastos = ({ gastos, onEdit, onDelete, moneda }) => {
                                     </td>
 
                                     <td>
-                                        <div className="d-flex justify-content-center gap-2">
-                                            
-                                            <button 
-                                                className="btn-modern-icon edit" 
-                                                onClick={() => onEdit(item)} 
+                                        <div className="create_budget-acciones">
+
+                                            <button
+                                                className="create_budget-btn_icon create_budget-btn_edit"
+                                                onClick={() => onEdit(item)}
                                                 title="Editar Gasto"
                                             >
                                                 <i className="bi bi-pencil-square"></i>
                                             </button>
 
-                                            <button 
-                                                className="btn-modern-icon delete" 
-                                                onClick={() => onDelete(item.id)} 
+                                            <button
+                                                className="create_budget-btn_icon create_budget-btn_delete"
+                                                onClick={() => onDelete(item.id)}
                                                 title="Eliminar Gasto"
                                             >
                                                 <i className="bi bi-trash3"></i>

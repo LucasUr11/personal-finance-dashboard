@@ -9,6 +9,7 @@ import { EditarGasto } from '../components/EditarGasto';
 import { EditarIngreso } from '../components/EditarIngreso';
 import { Balance } from "../components/Balance";
 import { currencies } from "../js/utils"
+import { Graficos } from "../components/Graficos";
 export const CreateBudget = () => {
 
     const navigate = useNavigate();
@@ -23,7 +24,12 @@ export const CreateBudget = () => {
     const [gastoAEditar, setGastoAEditar] = useState(null);
     const [showEditarIngreso, setShowEditarIngreso] = useState(false);
     const [ingresoAEditar, setIngresoAEditar] = useState(null);
-
+    const totalIngresos = ingresos.reduce((sum, i) => sum + i.amount, 0);
+    const totalGastos = gastos.reduce((sum, g) => sum + g.amount, 0);
+    const datosBalance = [
+        { category: "Ingresos", amount: totalIngresos },
+        { category: "Gastos", amount: totalGastos }
+    ]
     // Variable de entorno.-
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
@@ -139,6 +145,7 @@ export const CreateBudget = () => {
         const encontrada = currencies.find(c => c.code === codigo);
         setMonedaSeleccionada(encontrada);
     };
+
     return (
         <div className="create_budget container">
 
@@ -174,7 +181,7 @@ export const CreateBudget = () => {
             {/* Botones Ingreso / Gasto */}
             <div className="create_budget-ingreso_gasto">
                 <button
-                    className="create_budget-button_ingreso btn btn-outline-success"
+                    className="create_budget-button_ingreso btn"
                     disabled={!budgetId}
                     onClick={() => setShowIngreso(true)}
                 >
@@ -182,7 +189,7 @@ export const CreateBudget = () => {
                 </button>
 
                 <button
-                    className="create_budget-button_gasto btn btn-outline-danger"
+                    className="create_budget-button_gasto btn"
                     disabled={!budgetId}
                     onClick={() => setShowGasto(true)}
                 >
@@ -208,6 +215,7 @@ export const CreateBudget = () => {
                                 moneda={monedaSeleccionada}
                             />
                         </div>
+
                         {/* Gastos */}
                         <div className="col-md-6">
                             <ListaGastos
@@ -219,11 +227,20 @@ export const CreateBudget = () => {
                         </div>
 
                         {/* Balance */}
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                             <Balance
                                 ingresos={ingresos}
                                 gastos={gastos}
                                 moneda={monedaSeleccionada}
+                            />
+                        </div>
+
+                        {/* Gráfico */}
+                        <div className="col-md-6">
+                            <Graficos
+                                datos={datosBalance}
+                                titulo="Comparación Ingresos con Gastos"
+                                label="Monto"
                             />
                         </div>
                     </div>

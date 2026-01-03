@@ -70,7 +70,7 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
     ];
     return (
         <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton className="header-modal">
+            <Modal.Header closeButton className="agregar_gasto-header_modal">
                 <Modal.Title className="text-white">Agregar Gasto</Modal.Title>
             </Modal.Header>
 
@@ -122,7 +122,7 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
 
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Cancelar</Button>
-                <Button className="btn-custom" onClick={handleSubmit}>Guardar Gasto</Button>
+                <Button className="agregar_gasto-btn" onClick={handleSubmit}>Guardar Gasto</Button>
             </Modal.Footer>
         </Modal>
     );
