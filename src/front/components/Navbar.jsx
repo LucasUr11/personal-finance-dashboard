@@ -34,30 +34,40 @@ export const Navbar = () => {
 			</div>
 
 			{/* Botones */}
-			<div className="d-flex align-items-center gap-2">
+			<div className="navbar_buttons">
 
 				{/* Si el token NO existe, muestra el login y el signup */}
-				{/* {!token && (
+				{!token && (
+					<div className="mx-3">
+						<div className="navbar_buttons-nosotros btn-group dropstart">
+							<button type="button" className="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+								NOSOTROS
+							</button>
+							<ul className="dropdown-menu">
+								<li><a className="dropdown-item fs-7" href="https://www.instagram.com/lucas_urquiza11/" target="_blank">Instagram</a></li>
+								<li><a className="dropdown-item fs-7" href="https://github.com/LucasUr11" target="_blank">GitHub</a></li>
+								<li><a className="dropdown-item fs-7" href="https://www.linkedin.com/in/lucas-urquiza-c11/" target="_blank">Linkedin</a></li>
+							</ul>
+						</div>
+					</div>
 
-				)} */}
+				)}
 
 				{/* Si el token SI existe, mostrar Cerrar sesion */}
 				{token && (
-					<div className="d-flex align-items-center gap-2">
+					<div className="navbar_buttons-logueados mx-3">
 						<button
-							className="btn navbar_buttons-btn logout"
+							className="btn logout"
 							onClick={handleLogout}
 						>
 							CERRAR SESIÓN
 						</button>
-						<div className="navbar_buttons">
-							<button
-								className="btn navbar_buttons-btn"
-								onClick={() => navigate("/budget")}
-							>
-								PRESUPUESTO
-							</button>
-						</div>
+						<button
+							className="btn presupuesto"
+							onClick={() => navigate("/budget")}
+						>
+							PRESUPUESTO
+						</button>
 					</div>
 				)}
 

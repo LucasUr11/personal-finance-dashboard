@@ -70,6 +70,7 @@ export const SignupForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="form_input"
+                    required
                 />
                 <input
                     type="email"
@@ -78,6 +79,7 @@ export const SignupForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="form_input"
+                    required
                 />
                 <input
                     type="password"
@@ -86,6 +88,7 @@ export const SignupForm = () => {
                     value={formData.password}
                     onChange={handleChange}
                     className="form_input"
+                    required
                 />
 
                 {message && <div className="alert alert-success">{message}</div>}

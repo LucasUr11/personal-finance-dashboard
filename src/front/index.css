@@ -70,6 +70,69 @@
   color: #16302B;
 }
 
+.navbar_buttons, .navbar_buttons-logueados {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar_buttons-nosotros button {
+  border-color: #0F5C4B;
+  color: #0F5C4B;
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+.navbar_buttons-nosotros button:hover {
+  color: #FFF;
+  border-color: #0F5C4B;
+  background-color: #0F5C4B;
+  box-shadow: 0 4px 20px #0F5C4B80;
+}
+
+.navbar_buttons-nosotros button:focus {
+  color: #FFF;
+  border-color: #0F5C4B;
+  background-color: #0F5C4B;
+}
+
+.navbar_buttons-nosotros ul li a:hover {
+  background-color: #0F5C4B80;
+  color: #FFF;
+}
+
+.navbar_buttons-logueados .logout {
+  font-size: 12px;
+  border-color: #CD2626;
+  color: #CD2626;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar_buttons-logueados .logout:hover {
+  color: #FFF;
+  border-color: #CD2626;
+  background-color: #CD2626;
+  box-shadow: 0 4px 20px #CD262680;
+  transform: translateY(-3px);
+}
+
+.navbar_buttons-logueados .presupuesto {
+  font-size: 12px;
+  border-color: #A38560;
+  color: #A38560;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar_buttons-logueados .presupuesto:hover {
+  color: #FFF;
+  border-color: #A38560;
+  background-color: #A38560;
+  box-shadow: 0 4px 20px #A3856080;
+  transform: translateX(3px);
+}
+
 /*######################### Estilos para los formularios <Login> y <Signup> #########################*/
 
 .form_h1 {
@@ -153,19 +216,6 @@ a {
 	min-height: 480px;
 }
 
-.form-container {
-	position: absolute;
-	top: 0;
-	height: 100%;
-	transition: all 0.6s ease-in-out;
-}
-
-.sign-in-container {
-	left: 0;
-	width: 50%;
-	z-index: 2;
-}
-
 .auth_section_container.right-panel-active .sign-in-container {
 	transform: translateX(100%);
 }
@@ -182,6 +232,19 @@ a {
 	opacity: 1;
 	z-index: 5;
 	animation: show 0.6s;
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
 }
 
 @keyframes show {
@@ -273,6 +336,30 @@ a {
 	height: 40px;
 	width: 40px;
 }
+
+
+.login_form-btn {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0px;
+  top: 11px;
+  border: none;
+	background: transparent;
+	cursor: pointer;
+	padding: 8px;
+	color: #666;
+	transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+	color: #0048BA;
+}
+
 
 /*######################### Estilos para el Home #########################*/
 
@@ -447,10 +534,36 @@ a {
 /* ######################### Estilos para el CreateBudget ######################### */
 
 .create_budget {
-  height: 100%;
+  height: 100vh;
+  width: 100%;
   margin: 30px 0;
   display: flex;
   flex-direction: column;
+  justify-content: start;
+  gap: 20px;
+  position: relative;
+}
+
+.create_budget-img {
+  position: absolute;
+  height: 900px;
+  background-image: url("/logo_2.png");
+  inset: 0;
+  background-size: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.create_budget-contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 15px 0;
   gap: 20px;
 }
 
@@ -514,6 +627,7 @@ a {
 }
 
 .create_budget-volver_presupuesto button {
+  color: #FFF;
   background-color: #A38560;
   border-color: #A38560;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -666,29 +780,28 @@ a {
   transform: translateY(-3px);
 }
 
-.detalle_presupuesto_text {
+.detalle_presupuesto-text {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
-.detalle_presupuesto_button {
-  color: #FFF;
-  background-color: #A38560;
+.detalle_presupuesto-volver {
+  color: #A38560;
   border-color: #A38560;
   position: absolute;
   font-size: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.detalle_presupuesto_button:hover {
+.detalle_presupuesto-volver:hover {
   color: #FFF;
   background-color: #A38560;
   border-color: #A38560;
   box-shadow: 0 4px 20px #A3856080;
   transform: translateX(-3px);
 }
-
+ /* graficos */
 .graficos {
   display: flex;
   justify-content: center;
@@ -805,6 +918,26 @@ a {
   border-color: #CD2626;
   box-shadow: 0 0 0 0.25rem #CD262680;
 }
+
+/* ######################### Estilos para GraficosCarrusel ######################### */
+
+.graficos_carrusel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.graficos_carrusel-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E3E3E3;
+  padding: 24px;
+}
+
+.graficos_carrusel-titulo h5 i {
+  color: #0048BA;
+}
 /* ######################### Estilos para componentes del detalle presupuesto ######################### */
 
 .create_budget-acciones {
@@ -862,4 +995,57 @@ a {
 .custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
 .custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
   background-color: #0048BA;
+}
+
+/* ########### Toast Notification ########### */
+
+.toast_notification {
+  position: fixed;
+  top: 20px;
+  left: 60%;
+  transform: translateX(-50%);
+  z-index: 1050;
+}
+
+.custom-toast {
+  background: #0B2E33;
+  color: #EAF6F6;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 500;
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  min-width: 260px;
+  text-align: center;
+}
+
+.toast_notification-enter {
+  animation: toast-in 0.3s ease-out forwards;
+}
+
+.toast_notification-exit {
+  animation: toast-out 0.3s ease-in forwards;
+}
+
+/* animaciones */
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
 }

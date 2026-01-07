@@ -10,6 +10,8 @@ import { EditarIngreso } from '../components/EditarIngreso';
 import { Balance } from "../components/Balance";
 import { currencies } from "../js/utils"
 import { Graficos } from "../components/Graficos";
+import { ToastNotification } from "../components/ToastNotification";
+
 export const CreateBudget = () => {
 
     const navigate = useNavigate();
@@ -30,6 +32,8 @@ export const CreateBudget = () => {
         { category: "Ingresos", amount: totalIngresos },
         { category: "Gastos", amount: totalGastos }
     ]
+    const [showToast, setShowToast] = useState(false);
+
     // Variable de entorno.-
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
@@ -66,11 +70,21 @@ export const CreateBudget = () => {
 
         const data = await res.json();
 
-        if (!res.ok) return alert(data.msg || "Error creando presupuesto");
+        if (!res.ok) {
+            setShowToast({
+                show: true,
+                message: "No se pudo crear el presupuesto",
+                type: "error"
+            });
+        }
 
         setBudgetId(data.id);
         localStorage.setItem(`budget_currency_${data.id}`, JSON.stringify(monedaSeleccionada));
-        alert("Presupuesto creado");
+        setShowToast({
+            show: true,
+            message: "Presupuesto creado correctamente",
+            type: "success"
+        });
         CargarBudget(data.id);
     };
 
@@ -115,6 +129,7 @@ export const CreateBudget = () => {
         setGastoAEditar(gasto);
         setShowEditarGasto(true);
     };
+
     const handleEditIngreso = (ingreso) => {
         setIngresoAEditar(ingreso);
         setShowEditarIngreso(true);
@@ -148,53 +163,59 @@ export const CreateBudget = () => {
 
     return (
         <div className="create_budget container">
-
+            <div className="create_budget-img"></div>
             {/* Input + botón */}
-            <div>
-                {!budgetId && (
-                    <div className="create_budget-input_button">
-                        <input
-                            type="text"
-                            placeholder="Nombre del presupuesto"
-                            value={budgetName}
-                            onChange={(e) => setBudgetName(e.target.value)}
-                            className="form-control"
-                        />
-                        <select
-                            className="form-select w-auto"
-                            value={monedaSeleccionada.code}
-                            onChange={handleMonedaChange}
-                        >
-                            {currencies.map((curr) => (
-                                <option key={curr.code} value={curr.code}>
-                                    {curr.code} - {curr.name}
-                                </option>
-                            ))}
-                        </select>
-                        <button className="btn" onClick={crearBudget}>
-                            Crear Presupuesto
-                        </button>
-                    </div>
-                )}
-            </div>
+            <div className="create_budget-contenedor">
+                <div>
+                    {!budgetId && (
+                        <div className="create_budget-input_button">
+                            <input
+                                type="text"
+                                placeholder="Nombre del presupuesto"
+                                value={budgetName}
+                                onChange={(e) => setBudgetName(e.target.value)}
+                                className="form-control"
+                            />
+                            <select
+                                className="form-select w-auto"
+                                value={monedaSeleccionada.code}
+                                onChange={handleMonedaChange}
+                            >
+                                {currencies.map((curr) => (
+                                    <option key={curr.code} value={curr.code}>
+                                        {curr.code} - {curr.name}
+                                    </option>
+                                ))}
+                            </select>
+                            <button
+                                className="btn"
+                                onClick={crearBudget}
+                            >
+                                Crear Presupuesto
+                            </button>
+                        </div>
+                    )}
+                </div>
 
-            {/* Botones Ingreso / Gasto */}
-            <div className="create_budget-ingreso_gasto">
-                <button
-                    className="create_budget-button_ingreso btn"
-                    disabled={!budgetId}
-                    onClick={() => setShowIngreso(true)}
-                >
-                    Agregar Ingreso
-                </button>
+                {/* Botones Ingreso / Gasto */}
+                <div className="create_budget-ingreso_gasto">
+                    <button
+                        className="create_budget-button_ingreso btn"
+                        disabled={!budgetId}
+                        onClick={() => setShowIngreso(true)}
+                    >
+                        Agregar Ingreso
+                    </button>
 
-                <button
-                    className="create_budget-button_gasto btn"
-                    disabled={!budgetId}
-                    onClick={() => setShowGasto(true)}
-                >
-                    Agregar Gasto
-                </button>
+                    <button
+                        className="create_budget-button_gasto btn"
+                        disabled={!budgetId}
+                        onClick={() => setShowGasto(true)}
+                    >
+                        Agregar Gasto
+                    </button>
+
+                </div>
             </div>
 
             {/* Panel principal */}
@@ -247,6 +268,13 @@ export const CreateBudget = () => {
                 </div>
             )}
 
+            {/* Notificacion Toast */}
+            <ToastNotification
+                show={showToast}
+                message="Presupuesto creado correctamente"
+                onClose={() => setShowToast(false)}
+            />
+
             {/* Modales */}
             <AgregarIngreso
                 show={showIngreso}
@@ -282,10 +310,10 @@ export const CreateBudget = () => {
             />
             <div className="create_budget-volver_presupuesto">
                 <button
-                    className="btn btn-secondary px-4"
+                    className="btn px-4"
                     onClick={() => navigate("/budget")}
                 >
-                    ← Volver a Presupuestos
+                    Volver
                 </button>
             </div>
         </div>

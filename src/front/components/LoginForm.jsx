@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { Card, Button, Form } from 'react-bootstrap';
 
 export const LoginForm = () => {
 
@@ -8,6 +7,11 @@ export const LoginForm = () => {
         email: "",
         password: ""
     });
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const togglePassword = () => {
+        setPasswordVisible((prev) => !prev);
+    };
+
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -42,6 +46,7 @@ export const LoginForm = () => {
             if (response.ok) {
                 localStorage.setItem("jwt", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user))
+                console.log(`Formulario enviado!\nEmail: ${email}\nContraseña: ${password}`)
                 setTimeout(() => {
                     navigate("/budget");
                 }, 1000);
@@ -77,15 +82,37 @@ export const LoginForm = () => {
                     onChange={handleChange}
                     required
                 />
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    className="form_input"
-                    id="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
+                <div className="login_form-btn">
+                    <input
+                        type={passwordVisible ? "text" : "password"}
+                        id="password"
+                        placeholder="Contraseña"
+                        className="form_input"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <button
+                        type="button"
+                        className="toggle-password"
+                        id="togglePassword"
+                        onClick={togglePassword}
+                        aria-label={
+                            passwordVisible ? "Ocultar contraseña" : "Mostrar contraseña"
+                        }
+                        aria-pressed={passwordVisible}
+                    >
+                        <i
+                            className={
+                                passwordVisible
+                                    ? "fa-solid fa-eye"
+                                    : "fa-regular fa-eye-slash"
+                            }
+                        ></i>
+                    </button>
+
+                </div>
 
                 <a href="#">¿Olvidaste tu contraseña?</a> {/* Cambiar a navigate */}
 

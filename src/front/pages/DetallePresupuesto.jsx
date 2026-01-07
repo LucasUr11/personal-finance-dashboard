@@ -175,12 +175,12 @@ export const DetallePresupuesto = () => {
     return (
         <div className="container mt-4">
             <button
-                className="btn detalle_presupuesto_button"
+                className="btn detalle_presupuesto-volver"
                 onClick={() => navigate("/Budget")}
             >
-                <i className="fa-solid fa-angle-left"></i>Volver a Presupuestos
+                <i className="fa-solid fa-angle-left"></i>Volver
             </button>
-            <div className="detalle_presupuesto_text">
+            <div className="detalle_presupuesto-text">
                 <h2 className='text-center mb-4'>Detalle del Presupuesto: {budgetName}</h2>
             </div>
 
