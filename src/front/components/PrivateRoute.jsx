@@ -4,7 +4,7 @@ export const PrivateRoute = ({ children }) => {
     const token = localStorage.getItem("jwt");
 
     if (!token) {
-        return <Navigate to="/login" replace />
+        return <Navigate to="/" replace />
     }
 
     return children;

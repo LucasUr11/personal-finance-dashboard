@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { ToastNotification } from "./ToastNotification";
 
 
 export const EditarIngreso = ({ show, handleClose, ingreso, token, onUpdated }) => {
+
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "",
+    });
 
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
@@ -25,10 +32,28 @@ export const EditarIngreso = ({ show, handleClose, ingreso, token, onUpdated }) 
         const amountNumber = Number(form.monto);
 
         if (isNaN(amountNumber) || amountNumber < 0) {
-            return alert("El monto es inválido o negativo.");
+            setToast({
+                show: true,
+                message: "El monto es inválido o negativo.",
+                type: "error"
+            });
         }
-        if (!form.descripcion.trim()) return alert("La descripción es obligatoria");
-        if (!form.categoria.trim()) return alert("La categoría es obligatoria");
+
+        if (!form.descripcion.trim()) {
+            setToast({
+                show: true,
+                message: "La descripción es obligatoria.",
+                type: "error"
+            });
+        }
+
+        if (!form.categoria.trim()) {
+            setToast({
+                show: true,
+                message: "La categoria es obligatoria.",
+                type: "error"
+            });
+        }
 
         const body = {
             amount: amountNumber,
@@ -49,62 +74,86 @@ export const EditarIngreso = ({ show, handleClose, ingreso, token, onUpdated }) 
             const data = await res.json();
 
             if (!res.ok) {
-                return alert(data.msg || "Error al actualizar el ingreso.");
+                setToast({
+                    show: true,
+                    message: "Error al actualizar el ingreso.",
+                    type: "error"
+                });
+            } else {
+                setToast({
+                    show: true,
+                    message: "Ingreso editado correctamente.",
+                    type: "success"
+                });
             }
 
             onUpdated();
             handleClose();
         } catch (error) {
-            alert("Error al conectar con el servidor.");
+            setToast({
+                show: true,
+                message: "Error al conectar con el servidor.",
+                type: "error"
+            });
         }
     };
 
     if (!ingreso) return null;
 
     return (
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>Editar Ingreso</Modal.Title>
-            </Modal.Header>
+        <div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Editar Ingreso</Modal.Title>
+                </Modal.Header>
 
-            <Modal.Body>
-                <Form>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Monto</Form.Label>
-                        <Form.Control
-                            type="number"
-                            name="monto"
-                            value={form.monto}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Monto</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="monto"
+                                value={form.monto}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Descripción</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="descripcion"
-                            value={form.descripcion}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Descripción</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="descripcion"
+                                value={form.descripcion}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Categoría</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="categoria"
-                            value={form.categoria}
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Categoría</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="categoria"
+                                value={form.categoria}
+                                onChange={handleChange}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
 
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
-                <Button className="btn-custom" onClick={handleSubmit}>Guardar Cambios</Button>
-            </Modal.Footer>
-        </Modal>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Cerrar</Button>
+                    <Button className="btn-custom" onClick={handleSubmit}>Guardar Cambios</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <ToastNotification
+                show={toast.show}
+                message={toast.message}
+                onClose={() =>
+                    setToast(prev => ({ ...prev, show: false }))
+                }
+            />
+        </div>
     );
 };

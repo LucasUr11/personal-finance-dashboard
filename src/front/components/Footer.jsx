@@ -5,12 +5,17 @@ export const Footer = () => {
 		<div className="footer">
 
 			<div className="footer-title">
-				<h4 className="">En proceso...</h4>
+				<h5>WiseTrack • Gestor de presupuestos personales</h5>
 			</div>
 
-			<div className="footer-copyright">
-				<p>©2026. WiseTrack SA. Todos los derechos reservados.</p>
+			<div className="">
+				Desarrollado con React, Node.js y JWT • Proyecto en desarrollo activo
 			</div>
+
+			<div className="">
+				© 2026 Lucas Urquiza
+			</div>
+
 		</div>
 	)
 };

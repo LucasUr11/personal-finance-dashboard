@@ -4,6 +4,7 @@ export const ToastNotification = ({
     show,
     message,
     duration = 2000,
+    type,
     onClose
 }) => {
     const [visible, setVisible] = useState(show);
@@ -25,8 +26,7 @@ export const ToastNotification = ({
     return (
         <div className="toast_notification">
             <div
-                className={`custom-toast ${visible ? "toast_notification-enter" : "toast_notification-exit"
-                    }`}
+                className={`custom-toast ${type} ${visible ? "toast_notification-enter" : "toast_notification-exit"}`}
                 role="alert"
                 aria-live="assertive"
                 aria-atomic="true"

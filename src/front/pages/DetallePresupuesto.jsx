@@ -12,6 +12,7 @@ import { AgregarGasto } from '../components/AgregarGasto';
 import { EditarGasto } from '../components/EditarGasto';
 import { EditarIngreso } from '../components/EditarIngreso';
 import { GraficoCarrusel } from '../components/GraficoCarrusel';
+import { ToastNotification } from '../components/ToastNotification';
 
 export const DetallePresupuesto = () => {
     const { id } = useParams();
@@ -28,6 +29,11 @@ export const DetallePresupuesto = () => {
     const [gastoAEditar, setGastoAEditar] = useState(null);
     const [showEditarIngreso, setShowEditarIngreso] = useState(false);
     const [ingresoAEditar, setIngresoAEditar] = useState(null);
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "",
+    });
 
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
     const token = localStorage.getItem("jwt");
@@ -52,7 +58,11 @@ export const DetallePresupuesto = () => {
             setGastos(data.gastos || []);
             setIngresos(data.ingresos || []);
         } else {
-            alert(data.msg || "Error cargando presupuesto.");
+            setToast({
+                show: true,
+                message: "Error cargando presupuesto.",
+                type: "error"
+            });
             navigate("/budget");
         }
     };
@@ -81,14 +91,26 @@ export const DetallePresupuesto = () => {
             });
 
             if (res.ok) {
-                alert(`${endpoint === 'ingresos' ? 'Ingreso' : 'Gasto'} eliminado correctamente.`);
+                setToast({
+                    show: true,
+                    message: `${endpoint === 'ingresos' ? 'Ingreso' : 'Gasto'} eliminado correctamente.`,
+                    type: "success"
+                });
                 refreshData();
             } else {
                 const data = await res.json();
-                alert(data.msg || `Error al eliminar ${endpoint}.`);
+                setToast({
+                    show: true,
+                    message: data.msg || `Error al eliminar ${endpoint}.`,
+                    type: "error"
+                });
             }
         } catch (error) {
-            alert("Error al conectar con el servidor.");
+            setToast({
+                show: true,
+                message: "Error al conectar con el servidor.",
+                type: "error"
+            });
         }
     };
 
@@ -114,7 +136,11 @@ export const DetallePresupuesto = () => {
             });
 
             if (!response.ok) {
-                alert("No se pudo generar el PDF.");
+                setToast({
+                    show: true,
+                    message: "No se pudo generar el PDF.",
+                    type: "error"
+                });
                 return;
             }
 
@@ -132,7 +158,11 @@ export const DetallePresupuesto = () => {
             window.URL.revokeObjectURL(url);
 
         } catch (error) {
-            alert("Error al conectarse con el servidor.");
+            setToast({
+                show: true,
+                message: "Error al conectarse con el servidor.",
+                type: "error"
+            });
         }
     };
 
@@ -144,10 +174,7 @@ export const DetallePresupuesto = () => {
                 Cargando detalles del presupuesto...
             </h4>
 
-            <div
-                className="skeleton-box mb-3"
-            >
-            </div>
+            <div className="skeleton-box mb-3"></div>
 
             <div className="row mt-4">
                 <div className="col-md-6">
@@ -180,8 +207,11 @@ export const DetallePresupuesto = () => {
             >
                 <i className="fa-solid fa-angle-left"></i>Volver
             </button>
+
             <div className="detalle_presupuesto-text">
-                <h2 className='text-center mb-4'>Detalle del Presupuesto: {budgetName}</h2>
+                <h2 className='text-center mb-4'>
+                    Detalle del Presupuesto: {budgetName}
+                </h2>
             </div>
 
             {/* Sección de Botones */}
@@ -283,6 +313,14 @@ export const DetallePresupuesto = () => {
                 gasto={gastoAEditar}
                 token={token}
                 onUpdated={refreshData}
+            />
+
+            <ToastNotification
+                show={toast.show}
+                message={toast.message}
+                onClose={() =>
+                    setToast(prev => ({ ...prev, show: false }))
+                }
             />
 
         </div>

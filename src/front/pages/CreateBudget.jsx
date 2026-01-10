@@ -32,7 +32,11 @@ export const CreateBudget = () => {
         { category: "Ingresos", amount: totalIngresos },
         { category: "Gastos", amount: totalGastos }
     ]
-    const [showToast, setShowToast] = useState(false);
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "success",
+    });
 
     // Variable de entorno.-
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
@@ -56,7 +60,11 @@ export const CreateBudget = () => {
     // Crear presupuesto
     const crearBudget = async () => {
         if (!budgetName.trim()) {
-            return alert("El nombre del presupuesto es obligatorio");
+            setToast({
+                show: true,
+                message: "El nombre del presupuesto es obligatorio.",
+                type: "error"
+            });
         }
 
         const res = await fetch(`${API_URL}/api/budgets`, {
@@ -71,7 +79,7 @@ export const CreateBudget = () => {
         const data = await res.json();
 
         if (!res.ok) {
-            setShowToast({
+            setToast({
                 show: true,
                 message: "No se pudo crear el presupuesto",
                 type: "error"
@@ -80,7 +88,7 @@ export const CreateBudget = () => {
 
         setBudgetId(data.id);
         localStorage.setItem(`budget_currency_${data.id}`, JSON.stringify(monedaSeleccionada));
-        setShowToast({
+        setToast({
             show: true,
             message: "Presupuesto creado correctamente",
             type: "success"
@@ -117,11 +125,19 @@ export const CreateBudget = () => {
         });
 
         if (res.ok) {
-            alert("Gasto eliminado");
+            setToast({
+                show: true,
+                message: "Gasto eliminado correctamente",
+                type: "success"
+            });
             RecargarInfo();
         } else {
             const data = await res.json();
-            alert(data.msg || "Error al eliminar el gasto");
+            setToast({
+                show: true,
+                message: "Error al eliminar el gasto",
+                type: "error"
+            });
         }
     };
 
@@ -135,7 +151,7 @@ export const CreateBudget = () => {
         setShowEditarIngreso(true);
     };
 
-    // Función de eliminación de Ingreso (A implementar)
+    // Función de eliminación de Ingreso
     const BorrarIngreso = async (id) => {
         try {
             const res = await fetch(`${API_URL}/api/ingresos/${id}`, {
@@ -144,14 +160,26 @@ export const CreateBudget = () => {
             });
 
             if (res.ok) {
-                alert("Ingreso eliminado correctamente.");
+                setToast({
+                    show: true,
+                    message: "Ingreso eliminado correctamente",
+                    type: "success"
+                });
                 RecargarInfo(); // Llama a la función para recargar gastos e ingresos
             } else {
                 const data = await res.json();
-                alert(data.msg || "Error al eliminar el ingreso.");
+                setToast({
+                    show: true,
+                    message: "Error al eliminar el ingreso",
+                    type: "error"
+                });
             }
         } catch (error) {
-            alert("Error al conectar con el servidor para eliminar el ingreso.");
+            setToast({
+                show: true,
+                message: "Error al conectar con el servidor para eliminar el ingreso.",
+                type: "error"
+            });
         }
     };
 
@@ -270,10 +298,13 @@ export const CreateBudget = () => {
 
             {/* Notificacion Toast */}
             <ToastNotification
-                show={showToast}
-                message="Presupuesto creado correctamente"
-                onClose={() => setShowToast(false)}
+                show={toast.show}
+                message={toast.message}
+                onClose={() =>
+                    setToast(prev => ({ ...prev, show: false }))
+                }
             />
+
 
             {/* Modales */}
             <AgregarIngreso

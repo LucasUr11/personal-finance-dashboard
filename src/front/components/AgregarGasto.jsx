@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Modal, Button, Form, InputGroup } from "react-bootstrap";
+import { ToastNotification } from "./ToastNotification";
 
 export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, moneda }) => {
 
@@ -7,19 +8,54 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
     const [descripcion, setDescripcion] = useState("");
     const [categoria, setCategoria] = useState("");
     const [error, setError] = useState("");
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "success",
+    });
 
     // Variable de entorno
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
     const handleSubmit = async () => {
-        if (!monto.trim()) return alert("El monto es obligatorio");
+        if (!monto.trim()) {
+            setToast({
+                show: true,
+                message: "El monto es obligatorio.",
+                type: "error"
+            });
+        }
 
         const amountNumber = Number(monto);
 
-        if (isNaN(amountNumber)) return alert("Monto inválido");
-        if (amountNumber < 0) return alert("Monto inválido");
-        if (!descripcion.trim()) return alert("La descripción es obligatoria");
-        if (!categoria.trim()) return alert("La categoría es obligatoria");
+        if (isNaN(amountNumber)) {
+            setToast({
+                show: true,
+                message: "Monto inválido.",
+                type: "error"
+            });
+        }
+        if (amountNumber < 0) {
+            setToast({
+                show: true,
+                message: "Monto inválido.",
+                type: "error"
+            });
+        }
+        if (!descripcion.trim()) {
+            setToast({
+                show: true,
+                message: "La descripción es obligatoria.",
+                type: "error"
+            });
+        }
+        if (!categoria.trim()) {
+            setToast({
+                show: true,
+                message: "La categoria es obligatoria.",
+                type: "error"
+            });
+        }
 
         setError("");
         try {
@@ -42,7 +78,11 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
             const data = await res.json();
 
             if (!res.ok) {
-                return alert(data.msg || "Error al guardar el gasto.");
+                setToast({
+                    show: true,
+                    message: data.msg || "Error al guardar el gasto.",
+                    type: "error"
+                });
             }
 
             onAdded();
@@ -51,7 +91,11 @@ export const AgregarGasto = ({ show, handleClose, budgetId, token, onAdded, mone
             setCategoria("");
             handleClose();
         } catch (error) {
-            alert("Error al conectar con el servidor");
+            setToast({
+                show: true,
+                message: "Error al conectar con el servidor",
+                type: "error"
+            });
         }
     };
     const categoriasGastos = [

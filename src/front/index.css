@@ -1008,7 +1008,7 @@ a {
 }
 
 .custom-toast {
-  background: #0B2E33;
+  background: #0F5C4B;
   color: #EAF6F6;
   padding: 14px 22px;
   border-radius: 12px;
@@ -1024,6 +1024,16 @@ a {
 
 .toast_notification-exit {
   animation: toast-out 0.3s ease-in forwards;
+}
+
+/* cambiar el background dependiendo del type del toast */
+
+.custom-toast.success {
+  background: #0F5C4B;
+}
+
+.custom-toast.error {
+  background: #CD2626;
 }
 
 /* animaciones */
@@ -1048,4 +1058,94 @@ a {
     opacity: 0;
     transform: translate(-50%, -20px);
   }
+}
+
+/* ########### ConfirmModal ########### */
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.confirm-modal {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirm-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.confirm-message {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ########### Footer ########### */
+
+/* 
+  Beige: #A38560
+  Azul: #0048BA
+  Verde Claro: #0F5C4B
+  Verde Oscuro: #1E3D34
+  Bordo: #CD2626
+*/
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    #A3856040 0%,
+    #A3856026 50%,
+    #A385600d 80%,
+    #A3856000 100%
+  );
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #A38560;
+  width: 100%;
+  padding-left: 15px;
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    #A3856040 0%,
+    #A3856026 40%,
+    #A385600d 70%,
+    #A3856000 100%
+  );
 }

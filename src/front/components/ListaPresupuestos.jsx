@@ -1,7 +1,19 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { Button, Card, Row, Col } from 'react-bootstrap';
+import { ToastNotification } from './ToastNotification';
+import { ConfirmModal } from './ConfirmModal';
 
 export const ListaPresupuestos = ({ budgets, onSelectBudget, onRefresh, token }) => {
+
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "success",
+    });
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [budgetToDelete, setBudgetToDelete] = useState(null);
+
+
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
     const formatCurrency = (amount) => {
@@ -12,24 +24,41 @@ export const ListaPresupuestos = ({ budgets, onSelectBudget, onRefresh, token })
         }).format(amount || 0);
     };
 
-    const handleDeleteBudget = async (budgetId) => {
-        if (!window.confirm("¿Estás seguro de que quieres eliminar este presupuesto?")) return;
+    const handleDeleteBudget = (budgetId) => {
+        setBudgetToDelete(budgetId);
+        setShowConfirm(true);
+    };
 
+    const confirmDeleteBudget = async () => {
         try {
-            const res = await fetch(`${API_URL}/api/budgets/${budgetId}`, {
+            const res = await fetch(`${API_URL}/api/budgets/${budgetToDelete}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` },
             });
+
             const data = await res.json();
+
             if (res.ok) {
                 onRefresh();
             } else {
-                alert(data.msg || "Error");
+                setToast({
+                    show: true,
+                    message: data.msg || "Error al eliminar el presupuesto",
+                    type: "error",
+                });
             }
         } catch (error) {
-            alert("Error de conexión");
+            setToast({
+                show: true,
+                message: "Error de conexión.",
+                type: "error",
+            });
+        } finally {
+            setShowConfirm(false);
+            setBudgetToDelete(null);
         }
     };
+
 
     return (
         <>
@@ -83,6 +112,17 @@ export const ListaPresupuestos = ({ budgets, onSelectBudget, onRefresh, token })
                     </Col>
                 ))}
             </Row>
+
+            <ConfirmModal
+                show={showConfirm}
+                title="Eliminar presupuesto"
+                message="Esta acción no se puede deshacer."
+                confirmText="Eliminar"
+                cancelText="Cancelar"
+                onConfirm={confirmDeleteBudget}
+                onCancel={() => setShowConfirm(false)}
+            />
+
         </>
     );
 };

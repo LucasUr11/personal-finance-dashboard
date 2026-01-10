@@ -1,24 +1,60 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, InputGroup } from "react-bootstrap";
+import { ToastNotification } from "./ToastNotification";
 
 export const AgregarIngreso = ({ show, handleClose, budgetId, token, onAdded, moneda }) => {
     const [monto, setMonto] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [categoria, setCategoria] = useState("");
     const [error, setError] = useState("");
+    const [toast, setToast] = useState({
+        show: false,
+        message: "",
+        type: "success",
+    });
 
     // Variable de entorno.-
     const API_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3001";
 
     const handleSubmit = async () => {
-        if (!monto.trim()) return alert("El monto es obligatorio");
+        if (!monto.trim()) {
+            setToast({
+                show: true,
+                message: "El monto es obligatorio.",
+                type: "error"
+            });
+        }
 
         const amountNumber = Number(monto);
 
-        if (isNaN(amountNumber)) return alert("Monto inválido");
-        if (amountNumber < 0) return alert("Monto inválido");
-        if (!descripcion.trim()) return alert("La descripción es obligatoria");
-        if (!categoria.trim()) return alert("La categoría es obligatoria");
+        if (isNaN(amountNumber)) {
+            setToast({
+                show: true,
+                message: "Monto inválido.",
+                type: "error"
+            });
+        }
+        if (amountNumber < 0) {
+            setToast({
+                show: true,
+                message: "Monto inválido.",
+                type: "error"
+            });
+        }
+        if (!descripcion.trim()) {
+            setToast({
+                show: true,
+                message: "La descripcion es obligatoria.",
+                type: "error"
+            });
+        }
+        if (!categoria.trim()) {
+            setToast({
+                show: true,
+                message: "La categoria es obligatoria.",
+                type: "error"
+            });
+        }
 
         setError("");
         try {

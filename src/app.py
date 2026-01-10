@@ -12,6 +12,7 @@ from Backend.admin import setup_admin
 from Backend.commands import setup_commands
 from flask_jwt_extended import create_access_token, JWTManager
 from flask_cors import CORS
+from datetime import timedelta
 
 # from models import Person
 
@@ -27,6 +28,7 @@ app.url_map.strict_slashes = False
 
 # Creación del token mediante la clave guardada en la variable FLASK_APP_KEY (.env)
 app.config["JWT_SECRET_KEY"] = os.getenv("FLASK_APP_KEY")
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=8)
 jwt = JWTManager(app)
 
 # database condiguration

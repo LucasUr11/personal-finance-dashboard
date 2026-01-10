@@ -18,7 +18,6 @@ api = Blueprint('api', __name__)
 # Allow CORS requests to this API
 CORS(api)
 
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -37,7 +36,6 @@ def handle_hello():
 # ===================#
 
 # SIGNUP > Registro
-
 
 @api.route("/signup", methods=["POST"])
 def signup():
@@ -64,7 +62,6 @@ def signup():
     return jsonify({"Mensaje": "El usuario se ha creado correctamente, por favor proceda a iniciar sesion.", "user": NewUser.serialize()}), 201
 
 # Login > Acceso
-
 
 @api.route("/login", methods=["POST"])
 def login():
@@ -170,7 +167,6 @@ def get_user_budgets(user_id):
 
 # Eliminar Presupuesto por user
 
-
 @api.route("/budgets/<int:budget_id>", methods=["DELETE"])
 @jwt_required()
 def delete_budget(budget_id):
@@ -226,7 +222,6 @@ def add_ingreso(budget_id):
     return jsonify(ingreso.serialize()), 201
 
 # Editar Ingreso
-
 
 @api.route("/ingresos/<int:ingreso_id>", methods=["PUT"])
 @jwt_required()
@@ -358,7 +353,6 @@ def update_gasto(gasto_id):
     }), 200
 
 # Eliminar gasto
-
 
 @api.route("/gastos/<int:gasto_id>", methods=["DELETE"])
 @jwt_required()
